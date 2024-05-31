@@ -1,5 +1,4 @@
-require('dotenv').config();
-console.log(process.env.TOKEN);
+const { token } = require('../config.json');
 const { Client, IntentsBitField } = require('discord.js');
 
 const client = new Client({
@@ -15,4 +14,4 @@ client.on('ready', () => {
     console.log(`✅ Logged in as ${client.user.tag}`);
 });
 
-client.login(process.env.TOKEN).then(() => {});
+client.login(token).then(() => {});

@@ -1,0 +1,5 @@
+{
+  "token": "your_discord_bot_token",
+  "ip": "your_palserver_ip",
+  "port": "your_rest_api_port"
+}

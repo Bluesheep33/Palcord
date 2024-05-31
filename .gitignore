@@ -1,5 +1,5 @@
-## My own environment variables
-.env
+## Personal config variables
+config.json
 
 ## NPM modules
 node_modules/
