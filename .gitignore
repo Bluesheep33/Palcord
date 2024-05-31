@@ -1,0 +1,5 @@
+## My own environment variables
+.env
+
+## NPM modules
+node_modules/

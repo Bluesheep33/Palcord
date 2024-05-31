@@ -19,7 +19,11 @@ A discord bot for quickly retrieving info regarding your palworld server
 
 ### Project setup
 - Make sure you have all the requirements
+- Put the correct values in the `.env_sample` file and rename the file to `.env`
 - TODO: Add instructions on how to set up the project
+
+### Pictures
+- TODO: Add pictures of the bot in action
 
 ### Closing remarks
 Feel free to contribute to this repository by making a pull request or opening an issue. I'm open to suggestions and improvements.
