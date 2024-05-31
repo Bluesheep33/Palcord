@@ -1,0 +1,11 @@
+{
+  "name": "palcord",
+  "version": "1.0.0",
+  "description": "A discord bot for quickly retrieving info regarding your palworld server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lukas Mouthaan",
+  "license": "ISC"
+}
