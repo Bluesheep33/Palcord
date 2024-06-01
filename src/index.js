@@ -1,5 +1,6 @@
 const { token } = require('../config.json');
 const { Client, IntentsBitField } = require('discord.js');
+const palServerServiceInstance = require('./palServerService');
 
 const client = new Client({
     intents: [
@@ -12,6 +13,11 @@ const client = new Client({
 
 client.on('ready', () => {
     console.log(`✅ Logged in as ${client.user.tag}`);
+    palServerServiceInstance.getServerStatus().then((data) => {
+        console.log(data);
+    }).catch((error) => {
+        console.error(error);
+    });
 });
 
 client.login(token).then(() => {});

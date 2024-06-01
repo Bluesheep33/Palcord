@@ -16,11 +16,12 @@ A Discord bot for quickly retrieving info regarding your Palworld server
   - Create a new folder to store the code in
   - Run `git init` to initialize the folder as a git repository
   - Run `git remote add origin git@github.com:Bluesheep33/Palcord.git` to add the remote repository
+    - Note that you need to have your ssh key added to your GitHub account to use this command
   - Run `git pull origin main` to pull the code from the repository
 - Make sure you have all dependencies installed
   - Install [Node.js](https://nodejs.org/en/)
-  - Run npm fund to see what dependencies you need to install
-    - For each dependency, run `npm install <dependency>` to install it
+  - Run `npm i discord.js` to install the discord.js library (used for communicating with discord)
+  - Run `npm i axios` to install the axios library (used for communicating with the palworld server)
 - For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
   - Create a new application
   - Invite the bot to your discord server

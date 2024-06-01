@@ -3,3 +3,6 @@ config.json
 
 ## NPM modules
 node_modules/
+
+## Idea project files
+.idea/
