@@ -1,6 +1,6 @@
 const { token } = require('../config.json');
 const { Client, IntentsBitField } = require('discord.js');
-const palServerServiceInstance = require('./palServerService');
+const palserverServiceInstance = require('./palserver-service');
 
 // Create a new Discord client
 const client = new Client({
@@ -15,7 +15,7 @@ const client = new Client({
 // Listener for the ready event
 client.on('ready', () => {
     console.log(`✅ Logged in as ${client.user.tag}`);
-    palServerServiceInstance.getInfo().then((data) => {
+    palserverServiceInstance.getInfo().then((data) => {
         console.log(data);
     }).catch((error) => {
         console.error(error);

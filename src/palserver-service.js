@@ -1,9 +1,9 @@
 const { ip, port, username, password } = require('../config.json');
 const axios = require('axios');
 
-class palServerService {
+class palserverService {
     /**
-     * Creates a new instance of the palServerService
+     * Creates a new instance of the palserverService
      */
     constructor() {
         this.api = axios.create({
@@ -250,6 +250,6 @@ class palServerService {
     }
 }
 
-const palServerServiceInstance = new palServerService();
+const palserverServiceInstance = new palserverService();
 
-module.exports = palServerServiceInstance;
+module.exports = palserverServiceInstance;
