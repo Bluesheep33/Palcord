@@ -30,6 +30,7 @@ Port: ${port}`;
             // Reply with the message
             await interaction.reply(message);
         } catch (error) {
+            console.error(error);
             await interaction.reply("Server is offline");
         }
     }

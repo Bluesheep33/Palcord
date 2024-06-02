@@ -1,24 +1,19 @@
 const palserverServiceInstance = require("../../services/palserver-service");
 
 module.exports = {
-    name: 'server-status',
-    description: 'Get the status of the Palworld server.',
+    name: 'players',
+    description: 'Get a list of all players that are/were on the Palworld server.',
     options: [],
     devOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
         try {
             // Get the server status
-            const {serverfps, currentplayernum, serverframetime, uptime}
-                = await palserverServiceInstance.getMetrics();
+            const {players}
+                = await palserverServiceInstance.getPlayers();
 
             // Create the message
-            let message =
-`Server is online
-Server FPS: ${serverfps}
-Current Players: ${currentplayernum}
-Server Frame Time: ${serverframetime}
-Uptime: ${uptime}`;
+            let message = `Players: \n${players.join(", ")}`;
 
             // Reply with the message
             await interaction.reply(message);
