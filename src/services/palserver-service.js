@@ -1,4 +1,4 @@
-const { ip, port, username, password } = require('../config.json');
+const { ip, port, username, password } = require('../../config.json');
 const axios = require('axios');
 
 class palserverService {
