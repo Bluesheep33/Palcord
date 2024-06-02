@@ -1,5 +1,15 @@
-# _Palcord_
-A Discord bot for quickly retrieving info regarding your Palworld server
+# Palcord
+A Discord bot for Palworld servers.
+This bot can help you with the following:
+- Get information about the server (general information and the server's metrics)
+- Get information about the players (all players, active players or a specific player)
+- Send and receive messages to/from the server chat (Coming soon)
+- Moderate the server (Coming soon)
+
+
+## Quick note
+This project is designed to work for a Palworld server running on a Linux machine.
+If you use Windows, you can still use the discord bot, but you should create a bat file for the stdout listener instead of the shell script.
 
 
 ## Features
@@ -40,7 +50,7 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
 - If you already ran PalServer.sh once, then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
-  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer`. Replace LinuxServer with WindowsServer if you're on Windows
+  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer`
 - Start/Restart the palworld server for the api to start working
 
 ###### Configure the json file:
@@ -61,6 +71,13 @@ A Discord bot for quickly retrieving info regarding your Palworld server
   - If you haven't set a password, you can set one in the PalWorldSettings.ini file
   - If you don't want to use a password, you can leave this field blank
 - Lastly, rename the file to `config.json`
+
+###### Configure stdout listener:
+- Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
+- Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
+- Run `chmod +x start-server.sh` to make the file executable
+- Stop the palworld server if it's running and start it henceforth using the `start-server.sh` file
+  - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
 
 ###### Start the discord bot:
 - Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running

@@ -4,7 +4,7 @@ const {SlashCommandBuilder} = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('players')
-        .setDescription('Get a list of all players that are/were on the Palworld server.'),
+        .setDescription('Get a list of the current players on the Palworld server.'),
     adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
