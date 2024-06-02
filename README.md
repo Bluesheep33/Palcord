@@ -4,10 +4,10 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 
 ## Features
 - Get a server's general info (ip, port, name, version, description, password)
+- Get a server's status: online/offline, player count, uptime, fps, frame time
 
 
 ## Coming Features
-- Get a server's status: online/offline, player count, ping
 - Get a server's player list
 - Get a player's info: name, level, location
 - Send a message to the server chat via discord
