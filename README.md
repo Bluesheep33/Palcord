@@ -3,7 +3,7 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 
 
 ## Features
-- None so far
+- Get a server's general info (ip, port, name, version, description, password)
 
 
 ## Coming Features
