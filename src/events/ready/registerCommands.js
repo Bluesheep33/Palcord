@@ -8,7 +8,7 @@ module.exports = async (client) => {
         const applicationCommands = await getApplicationCommands(client);
 
         for (const command of localCommands) {
-            const { name, description, options } = command;
+            const { data: { name, description, options } } = command;
 
             if (!name) {
                 console.error('⏩ Skipping command without a name');

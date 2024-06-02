@@ -1,16 +1,14 @@
 const palserverServiceInstance = require("../../services/palserver-service");
+const {SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
-    name: 'message',
-    description: 'Send a message to the server chat via Discord.',
-    options: [
-        {
-            name: 'content',
-            type: 'STRING',
-            description: 'The content of the message',
-            required: true,
-        },
-    ],
+    data: new SlashCommandBuilder()
+        .setName('message')
+        .setDescription('Send a message to the server chat via Discord.')
+        .addStringOption(option =>
+            option.setName('content')
+                .setDescription('The content of the message')
+                .setRequired(true)),
     devOnly: false,
     deleted: false,
     callback: async (client, interaction) => {

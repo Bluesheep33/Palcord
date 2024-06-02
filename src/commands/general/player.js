@@ -1,16 +1,14 @@
 const palserverServiceInstance = require("../../services/palserver-service");
+const {SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
-    name: 'player',
-    description: 'Get information about a specific player on the Palworld server.',
-    options: [
-        {
-            name: 'name',
-            type: 'STRING',
-            description: 'The name of the player',
-            required: true,
-        },
-    ],
+    data: new SlashCommandBuilder()
+        .setName('player')
+        .setDescription('Get information about a specific player on the Palworld server.')
+        .addStringOption(option =>
+            option.setName('name')
+                .setDescription('The name of the player')
+                .setRequired(true)),
     devOnly: false,
     deleted: false,
     callback: async (client, interaction) => {

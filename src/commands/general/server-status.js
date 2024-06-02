@@ -1,4 +1,5 @@
 const palserverServiceInstance = require("../../services/palserver-service");
+const {SlashCommandBuilder} = require("discord.js");
 
 function formatUptime(uptime) {
     const days = Math.floor(uptime / (24*60*60));
@@ -10,9 +11,9 @@ function formatUptime(uptime) {
 }
 
 module.exports = {
-    name: 'server-status',
-    description: 'Get the status of the Palworld server.',
-    options: [],
+    data: new SlashCommandBuilder()
+        .setName('server-status')
+        .setDescription('Get the status of the Palworld server.'),
     devOnly: false,
     deleted: false,
     callback: async (client, interaction) => {

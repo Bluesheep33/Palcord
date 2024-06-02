@@ -1,22 +1,18 @@
 const palserverServiceInstance = require("../../services/palserver-service");
+const {SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
-    name: 'kick',
-    description: 'Kick a player from the server.',
-    options: [
-        {
-            name: 'userid',
-            type: 'STRING',
-            description: 'The steam id of the player to kick (can be found with /player [name])',
-            required: true
-        },
-        {
-            name: 'reason',
-            type: 'STRING',
-            description: 'The reason for kicking the player',
-            required: false
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('kick')
+        .setDescription('Kick a player from the server.')
+        .addStringOption(option =>
+            option.setName('userid')
+                .setDescription('The steam id of the player to kick (can be found with /player [name])')
+                .setRequired(true))
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('The reason for kicking the player')
+                .setRequired(false)),
     devOnly: true,
     deleted: false,
     callback: async (client, interaction) => {
