@@ -13,7 +13,7 @@ const client = new Client({
 
 client.on('ready', () => {
     console.log(`✅ Logged in as ${client.user.tag}`);
-    palServerServiceInstance.getServerStatus().then((data) => {
+    palServerServiceInstance.getServerInfo().then((data) => {
         console.log(data);
     }).catch((error) => {
         console.error(error);

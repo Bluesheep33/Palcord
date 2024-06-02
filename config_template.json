@@ -1,5 +1,7 @@
 {
   "token": "your_discord_bot_token",
   "ip": "localhost",
-  "port": 8212
+  "port": 8212,
+  "username": "admin",
+  "password": "palserver_admin_password"
 }

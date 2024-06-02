@@ -1,15 +1,19 @@
-const { ip, port } = require('../config.json');
+const { ip, port, username, password } = require('../config.json');
 const axios = require('axios');
 
 class palServerService {
     constructor() {
         this.api = axios.create({
             baseURL: `http://${ip}:${port}`,
-            maxBodyLength: Infinity
+            maxBodyLength: Infinity,
+            auth: {
+                username: username,
+                password: password
+            }
         });
     }
 
-    async getServerStatus() {
+    async getServerInfo() {
         try {
             console.log(`Making request to http://${ip}:${port}/v1/api/info`);
             const response = await this.api({
@@ -28,6 +32,7 @@ class palServerService {
     handleError(error) {
         if (error.response) {
             // Server responded with a status other than 2xx
+            console.log(error.response.data);
             throw new Error(error.response.data.message || 'API request failed');
         } else if (error.request) {
             // No response received from server

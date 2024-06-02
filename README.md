@@ -31,6 +31,10 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 - Put the server ip and port in the `config_template.json` file
   - If you're running the server on the same computer as the bot like instructed, you can use `localhost` as the ip. Otherwise, put the ip of the other computer running the server. 
   - Note that the port should be the port that the rest api is running on, not the palserver port. By default, this port is `8212`
+- Put the username and password of the server in the `config_template.json` file
+  - The username is `admin` by default, the password is the same as the one you use to log into the server as admin (the one you set in the server settings)
+    - If you haven't set a password, you can set one in the PalWorldSettings.ini file 
+  - Note that the password is stored in plain text in the config file, so make sure to keep the file secure
 - After you put the bot token and the ip + port of the api in `config_template.json`, rename the file to `config.json`
 - Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running
 
