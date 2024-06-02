@@ -1,6 +1,6 @@
 const { token } = require('../config.json');
-const { Client, IntentsBitField } = require('discord.js');
-const palserverServiceInstance = require('./palserver-service');
+const { Client, IntentsBitField, ActivityType } = require('discord.js');
+const eventHandler = require('./handlers/eventHandler');
 
 // Create a new Discord client
 const client = new Client({
@@ -12,15 +12,8 @@ const client = new Client({
     ]
 });
 
-// Listener for the ready event
-client.on('ready', () => {
-    console.log(`✅ Logged in as ${client.user.tag}`);
-    palserverServiceInstance.getInfo().then((data) => {
-        console.log(data);
-    }).catch((error) => {
-        console.error(error);
-    });
-});
+// Register event listeners
+eventHandler(client);
 
 // Login to Discord with the app's token
 client.login(token).then(() => {});
