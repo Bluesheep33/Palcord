@@ -1,6 +1,8 @@
 const { token } = require('../config.json');
 const { Client, IntentsBitField, ActivityType } = require('discord.js');
 const eventHandler = require('./handlers/eventHandler');
+const stdoutWatcher = require('./services/stdoutWatcher');
+
 
 // Create a new Discord client
 const client = new Client({
@@ -14,6 +16,9 @@ const client = new Client({
 
 // Register event listeners
 eventHandler(client);
+
+// Start the stdout watcher
+stdoutWatcher();
 
 // Login to Discord with the app's token
 client.login(token).then(() => {});

@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserver-service");
+const palserverServiceInstance = require("../../services/palserverService");
 const {SlashCommandBuilder} = require("discord.js");
 
 module.exports = {

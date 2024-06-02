@@ -3,8 +3,8 @@ A Discord bot for Palworld servers.
 This bot can help you with the following:
 - Get information about the server (general information and the server's metrics)
 - Get information about the players (all players, active players or a specific player)
-- Send and receive messages to/from the server chat (Coming soon)
-- Moderate the server (Coming soon)
+- Send and receive messages to/from the server chat (coming soon)
+- Moderate the server (coming soon)
 
 
 ## Quick note
@@ -75,6 +75,7 @@ If you use Windows, you can still use the discord bot, but you should create a b
 ###### Configure stdout listener:
 - Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
 - Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
+  - If the path is incorrect, you will need to change it to the correct path in the shell file and also in stdoutWatcher.js 
 - Run `chmod +x start-server.sh` to make the file executable
 - Stop the palworld server if it's running and start it henceforth using the `start-server.sh` file
   - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
