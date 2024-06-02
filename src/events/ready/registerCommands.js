@@ -11,7 +11,7 @@ module.exports = async (client) => {
             const { name, description, options } = command;
 
             if (!name) {
-                console.error('⏩Skipping command without a name');
+                console.error('⏩ Skipping command without a name');
                 continue;
             }
 
@@ -23,7 +23,7 @@ module.exports = async (client) => {
                     await applicationCommands.delete(
                         existingCommand.id
                     );
-                    console.log(`🗑️Deleted command: ${name}`);
+                    console.log(`🗑️ Deleted command: ${name}`);
                     continue;
                 }
 
@@ -32,11 +32,11 @@ module.exports = async (client) => {
                         existingCommand.id,
                         {name, description, options}
                     );
-                    console.log(`🔄Edited command: ${name}`);
+                    console.log(`🔄 Edited command: ${name}`);
                 }
             } else {
                 if (command.deleted) {
-                    console.log(`⏩Skipping deleted command: ${name}`)
+                    console.log(`⏩ Skipping deleted command: ${name}`)
                     continue;
                 }
 
@@ -45,7 +45,7 @@ module.exports = async (client) => {
                     description,
                     options
                 });
-                console.log(`➕Registered command: ${name}`);
+                console.log(`➕  Registered command: ${name}`);
             }
         }
     } catch (error) {
