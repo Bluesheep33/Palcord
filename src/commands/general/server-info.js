@@ -1,4 +1,4 @@
-const { ip, password } = require("../../../config.json");
+const { publicIp, password } = require("../../../config.json");
 const palserverServiceInstance = require("../../services/palserver-service");
 
 module.exports = {
@@ -16,10 +16,11 @@ module.exports = {
 
         // Create the message
         let message =
-            `Server Name: ${servername}
-            Game Version: ${version}
-            Description: ${description}IP: ${ip}
-            Port: ${port}`;
+        `Server Name: ${servername}
+        Game Version: ${version}
+        Description: ${description}
+        IP: ${publicIp}
+        Port: ${port}`;
         if (password !== "") {
             message += `\nPassword: ${password}`;
         }

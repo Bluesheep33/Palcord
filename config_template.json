@@ -5,5 +5,6 @@
   "port": 8212,
   "username": "admin",
   "password": "your palserver admin password",
+  "publicIp": "your palserver public ip",
   "serverPassword": "your palserver password"
 }

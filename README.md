@@ -50,6 +50,8 @@ A Discord bot for quickly retrieving info regarding your Palworld server
   - The username is `admin` by default, the password is the same as the one you use to log into the server as admin (the one you set in the server settings)
     - If you haven't set a password, you can set one in the PalWorldSettings.ini file 
   - Note that the password is stored in plain text in the config file, so make sure you keep this file secure from others
+- Put the public ip of your Palworld server under publicIp
+  - This is used to display the ip of the server in the bot's server info command
 - Put the default password of the server in as well
   - If you haven't set a password, you can set one in the PalWorldSettings.ini file
   - If you don't want to use a password, you can leave this field blank
