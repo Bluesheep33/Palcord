@@ -41,6 +41,8 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
   - This token can be found on the [Discord Developer Portal](https://discord.com/developers/applications) under the `Bot` tab of your application
+- Copy your discord user id and put it under `adminId`
+  - This is for the bot to know who the server admin is and to allow you to use the admin commands 
 - Put the rest api server ip and port in this same file
   - If you're running the server on the same computer as the bot, you can use `localhost` or `127.0.0.1` as the ip. Otherwise, put the ip of the other computer running the server.
   - Note that the port should be the port that the rest api is running on, not the palserver port. By default, this port is `8212`

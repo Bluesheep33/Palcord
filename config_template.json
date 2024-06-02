@@ -1,8 +1,9 @@
 {
   "token": "your discord bot token",
+  "adminId": "your discord id",
   "ip": "localhost",
   "port": 8212,
   "username": "admin",
   "password": "your palserver admin password",
-  "server-password": "your palserver password"
+  "serverPassword": "your palserver password"
 }
