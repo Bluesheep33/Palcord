@@ -14,10 +14,10 @@ module.exports = {
     devOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
-        try {
-            // Get the message content from the interaction
-            const messageContent = interaction.options.getString('content');
+        // Get the message content from the interaction
+        const messageContent = interaction.options.getString('content');
 
+        try {
             // Send the message to the server chat
             await palserverServiceInstance.announce(messageContent);
 

@@ -6,7 +6,7 @@ function formatUptime(uptime) {
     const minutes = Math.floor((uptime % (60*60)) / 60);
     const seconds = Math.floor(uptime % 60);
 
-    return `${days}D:${hours}H:${minutes}M:${seconds}S`;
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
 module.exports = {
