@@ -5,12 +5,14 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 ## Features
 - Get a server's general info (ip, port, name, version, description, password)
 - Get a server's status: online/offline, player count, uptime, fps, frame time
-- Get a server's player list
+- Get a server's active player list
 - Get a player's info: name, level, location
 - Send a message to the server chat via discord
 
 
 ## Possibly coming features
+- Get a list of all players
+- Optional communication channel feature on discord to talk with people in palworld without having to join game or vice versa
 - Get the server settings (e.g. difficulty, max players, death penalty)
 - Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 - Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
