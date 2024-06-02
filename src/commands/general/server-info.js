@@ -16,11 +16,12 @@ module.exports = {
 
         // Create the message
         let message =
-        `Server Name: ${servername}
-        Game Version: ${version}
-        Description: ${description}
-        IP: ${publicIp}
-        Port: ${port}`;
+`Server Name: ${servername}
+Game Version: ${version}
+Description: ${description}
+IP: ${publicIp}
+Port: ${port}`;
+
         if (password !== "") {
             message += `\nPassword: ${password}`;
         }
