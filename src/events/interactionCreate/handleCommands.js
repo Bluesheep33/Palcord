@@ -8,12 +8,12 @@ module.exports = async (client, interaction) => {
 
     try {
         const commandObject = localCommands.find(
-            (cmd) => cmd.name === interaction.commandName
+            (cmd) => cmd.data.name === interaction.commandName
         );
 
         if (!commandObject) return;
 
-        if (commandObject.devOnly) {
+        if (commandObject.adminOnly) {
             if (!interaction.member.id.equals(adminId)) {
                 interaction.reply({
                     content: 'Only the admin is allowed to run this command.',
@@ -25,6 +25,6 @@ module.exports = async (client, interaction) => {
 
         commandObject.callback(client, interaction);
     } catch (error) {
-        console.log(`There was an error running this command: ${error}`);
+        console.error(`There was an error running this command: ${error}`);
     }
 };

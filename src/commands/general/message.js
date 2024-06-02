@@ -9,7 +9,7 @@ module.exports = {
             option.setName('content')
                 .setDescription('The content of the message')
                 .setRequired(true)),
-    devOnly: false,
+    adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
         // Get the message content from the interaction

@@ -13,7 +13,7 @@ module.exports = {
             option.setName('reason')
                 .setDescription('The reason for kicking the player')
                 .setRequired(false)),
-    devOnly: true,
+    adminOnly: true,
     deleted: false,
     callback: async (client, interaction) => {
         // Get the userid and reason from the interaction

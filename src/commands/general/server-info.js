@@ -6,7 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('server-info')
         .setDescription('Get information about the Palworld server.'),
-    devOnly: false,
+    adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
         try {

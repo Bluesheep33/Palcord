@@ -9,7 +9,7 @@ module.exports = {
             option.setName('name')
                 .setDescription('The name of the player')
                 .setRequired(true)),
-    devOnly: false,
+    adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
         try {

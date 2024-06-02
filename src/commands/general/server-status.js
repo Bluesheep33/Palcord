@@ -14,7 +14,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('server-status')
         .setDescription('Get the status of the Palworld server.'),
-    devOnly: false,
+    adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
         try {
