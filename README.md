@@ -10,7 +10,7 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 - Send a message to the server chat via discord
 
 
-## Possibly Coming Features
+## Possibly coming features
 - Get the server settings (e.g. difficulty, max players, death penalty)
 - Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 - Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
@@ -62,11 +62,19 @@ A Discord bot for quickly retrieving info regarding your Palworld server
 
 ###### Start the discord bot:
 - Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running
+- The global slash commands will take some time to get registered, so ideally wait a few hours max in order for the commands to show
 
 
 ## Pictures
-- TODO: Add pictures of the bot in action
+###### Bot commands
+![server-info](https://github.com/Bluesheep33/Palcord/assets/75695506/782ad7f7-2159-440b-a42c-a4d0d85a7c8b)
 
+![server-status](https://github.com/Bluesheep33/Palcord/assets/75695506/512bdc2a-e512-452c-95c1-395fbf97fbde)
+
+###### Miscellaneous
+![project files](https://github.com/Bluesheep33/Palcord/assets/75695506/125d5c51-815d-4a97-88a5-95c628ef7920)
+
+![console log](https://github.com/Bluesheep33/Palcord/assets/75695506/10bc6327-99ba-4608-aab2-c7fe540591fe)
 
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
