@@ -72,7 +72,6 @@ Otherwise, the running server will override your changes to any files.
       6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
   - If the path to where you want your log is not `~/Steam/steamapps/common/PalServer/` (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and in `config_template.json`
 - Run `chmod +x start-server.sh` to make the shell file an executable
-- Rename the file `lastLineReadTemplate` in `src/services/stdoutService/` to `lastLineRead`
 - Stop the palworld server if it's running
 - Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json`
 - Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
