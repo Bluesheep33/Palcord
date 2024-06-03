@@ -7,9 +7,14 @@ This bot can help you with the following:
 - Moderate the server (coming soon)
 
 
-## Quick note
+## Quick notes
 This project is designed to work for a Palworld server running on a Linux machine.
 If you use Windows, you can still use the discord bot, but you should create a bat file for the stdout listener instead of the shell script.
+
+Some features are still in development, so they might not work as intended.
+
+When changing settings in the .ini files, make sure to stop the server before making changes and start it again after saving the changes.
+Otherwise, the running server will override your changes to any files.
 
 
 ## Features
@@ -50,7 +55,7 @@ If you use Windows, you can still use the discord bot, but you should create a b
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
 - If you already ran PalServer.sh once, then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
-  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer`
+  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
 - Start/Restart the palworld server for the api to start working
 
 ###### Configure stdout listener:
@@ -67,8 +72,12 @@ If you use Windows, you can still use the discord bot, but you should create a b
       6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
   - If the path to where you want your log is not `~/Steam/steamapps/common/PalServer/` (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and in `config_template.json`
 - Run `chmod +x start-server.sh` to make the shell file an executable
-- Stop the palworld server if it's running and start it henceforth using the `start-server.sh` file
+- Rename the file `lastLineReadTemplate` in `src/services/stdoutService/` to `lastLineRead`
+- Stop the palworld server if it's running
+- Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json`
+- Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
   - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
+- If the console-log.txt file ever gets too big, you can delete it, but make sure to change the number in `src/services/stdoutService/lastLineRead` to 0
 
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
