@@ -5,7 +5,7 @@ const { logPath } = require('../../config.json');
 
 let lastLineRead;
 
-const lastLineReadPath = 'stdoutService/lastLineRead';
+const lastLineReadPath = './stdoutService/lastLineRead';
 
 // Read the lastLineRead value from the file
 if (fs.existsSync(lastLineReadPath)) {
@@ -14,7 +14,7 @@ if (fs.existsSync(lastLineReadPath)) {
     lastLineRead = 0;
 }
 
-module.exports = () => {
+const readLogFile = () => {
     // Create a readline interface to read the log file
     const rl = readline.createInterface({
         input: fs.createReadStream(logPath, { start: lastLineRead }),
@@ -40,8 +40,11 @@ module.exports = () => {
             // Write the lastLineRead value to the file
             fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
 
-            // Restart the module
-            module.exports();
+            // Restart the method
+            readLogFile();
         }
     });
 }
+
+// Export the method
+module.exports = readLogFile;
