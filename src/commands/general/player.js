@@ -20,7 +20,7 @@ module.exports = {
             const players = await palserverServiceInstance.getPlayers();
 
             // Find the player with the given name
-            const player = players.find(p => p.name === playerName);
+            const player = players.players.find(p => p.name === playerName);
 
             // If the player does not exist, reply with an error message
             if (!player) {
