@@ -1,6 +1,9 @@
 ## Personal config variables
 config.json
 
+## Stdout service last line read
+src/services/stdoutService/lastLineRead
+
 ## NPM modules
 node_modules/
 

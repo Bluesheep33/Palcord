@@ -55,7 +55,7 @@ Otherwise, the running server will override your changes to any files.
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
 - If you already ran PalServer.sh once, then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
-  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer`
+  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
 - Start/Restart the palworld server for the api to start working
 
 ###### Configure stdout listener:
@@ -72,6 +72,7 @@ Otherwise, the running server will override your changes to any files.
       6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
   - If the path to where you want your log is not `~/Steam/steamapps/common/PalServer/` (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and in `config_template.json`
 - Run `chmod +x start-server.sh` to make the shell file an executable
+- Rename the file `lastLineReadTemplate` in `src/services/stdoutService/` to `lastLineRead`
 - Stop the palworld server if it's running
 - Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json`
 - Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
