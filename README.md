@@ -70,6 +70,8 @@ If you use Windows, you can still use the discord bot, but you should create a b
 - Put the default password of the server in as well
   - If you haven't set a password, you can set one in the PalWorldSettings.ini file
   - If you don't want to use a password, you can leave this field blank
+- channelId should be set to the id of the discord channel where the bot will send messages from the server chat
+  - You can get this id by right-clicking on the channel and clicking copy id
 - Lastly, rename the file to `config.json`
 
 ###### Configure stdout listener:
