@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 const stdoutLineHandler = require('../handlers/stdoutLineHandler');
@@ -5,7 +6,7 @@ const { logPath } = require('../../config.json');
 
 let lastLineRead;
 
-const lastLineReadPath = './stdoutService/lastLineRead';
+const lastLineReadPath = path.join(__dirname, './stdoutService', 'lastLineRead');
 
 // Read the lastLineRead value from the file
 if (fs.existsSync(lastLineReadPath)) {
