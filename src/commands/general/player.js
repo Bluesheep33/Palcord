@@ -17,13 +17,10 @@ module.exports = {
             const playerName = interaction.options.getString('name');
 
             // Get the player's information from the service
-            const playersJson = await palserverServiceInstance.getPlayers();
-
-            // Parse the JSON
-            const players = JSON.parse(playersJson);
+            const players = await palserverServiceInstance.getPlayers();
 
             // Find the player with the given name
-            const player = players.find(p => p.name === playerName);
+            const player = players.players.find(p => p.name === playerName);
 
             // If the player does not exist, reply with an error message
             if (!player) {
