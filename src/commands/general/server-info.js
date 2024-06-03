@@ -1,4 +1,4 @@
-const { publicIp, password } = require("../../../config.json");
+const { publicIp, serverPassword } = require("../../../config.json");
 const palserverServiceInstance = require("../../services/palserverService");
 const {SlashCommandBuilder} = require("discord.js");
 
@@ -24,8 +24,8 @@ Description: ${description}
 IP: ${publicIp}
 Port: ${port}`;
 
-            if (password !== "") {
-                message += `\nPassword: ${password}`;
+            if (serverPassword !== "") {
+                message += `\nPassword: ${serverPassword}`;
             }
 
             // Reply with the message
