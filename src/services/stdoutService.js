@@ -16,6 +16,23 @@ if (fs.existsSync(lastLineReadPath)) {
 }
 
 const readLogFile = () => {
+    const fileSize = fs.statSync(logPath).size;
+
+    // Check if the current file size is equal to or smaller than the lastLineRead value
+    if (fileSize <= lastLineRead) {
+        // No new lines to process, watch the log file for changes
+        fs.watchFile(logPath, (curr, prev) => {
+            if (curr.mtime !== prev.mtime) {
+                // Stop watching the file
+                fs.unwatchFile(logPath);
+
+                // Restart the method
+                readLogFile();
+            }
+        });
+        return;
+    }
+
     // Create a readline interface to read the log file
     const rl = readline.createInterface({
         input: fs.createReadStream(logPath, { start: lastLineRead }),
@@ -27,12 +44,12 @@ const readLogFile = () => {
     rl.on('line', (line) => {
         stdoutLineHandler(line);
         lastLineRead += Buffer.byteLength(line + '\n', 'utf8');
+
+        // Write the updated lastLineRead value to the file
+        fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
     });
 
     rl.on('close', () => {
-        // Write the lastLineRead value to the file
-        fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
-
         // Watch the log file for changes and restart the readline interface
         fs.watchFile(logPath, (curr, prev) => {
             if (curr.mtime !== prev.mtime) {
