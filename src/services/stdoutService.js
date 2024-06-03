@@ -23,6 +23,7 @@ module.exports = () => {
     fs.watchFile(logPath, (curr, prev) => {
         if (curr.mtime !== prev.mtime) {
             rl.close();
+            fs.unwatchFile(logPath);
             module.exports();
         }
     });
