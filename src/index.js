@@ -18,7 +18,7 @@ const client = new Client({
 eventHandler(client);
 
 // Start the stdout watcher
-stdoutWatcher();
+//stdoutWatcher();
 
 // Login to Discord with the app's token
 client.login(token).then(() => {});

@@ -27,7 +27,6 @@ module.exports = (existingCommand, localCommand) => {
             }
 
             if (
-                localOption.description !== existingOption.description ||
                 localOption.type !== existingOption.type ||
                 localOption.required !== existingOption.required ||
                 (localOption.choices?.length || 0) !== (existingOption.choices?.length || 0) ||
@@ -42,7 +41,6 @@ module.exports = (existingCommand, localCommand) => {
         return false;
     };
 
-    return existingCommand.description !== localCommand.description ||
-        existingCommand.options?.length !== (localCommand.options?.length || 0) ||
+    return existingCommand.options?.length !== (localCommand.options?.length || 0) ||
         areOptionsDifferent(existingCommand.options, localCommand.options || []);
 };
