@@ -53,6 +53,23 @@ If you use Windows, you can still use the discord bot, but you should create a b
   - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer`
 - Start/Restart the palworld server for the api to start working
 
+###### Configure stdout listener:
+- Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
+- Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
+  - If you run the discord bot and the palserver with different users, you will need to store console-log.txt in a directory that both users have access to
+    - You can do this by creating a new directory and granting both users access to it
+    - To make a shared directory in linux, you need to run the following:
+      1. `sudo mkdir /var/log/palworld` - creates a new directory
+      2. `sudo groupadd palworld` - creates a new group
+      3. `sudo usermod -a -G palworld user1` - adds the user `user1` to the group `palworld`
+      4. `sudo usermod -a -G palworld user2` - adds the user `user2` to the group `palworld`
+      5. `sudo chgrp -R palworld /var/log/palworld` - grant the group `palworld` ownership over the directory
+      6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
+  - If the path to where you want your log is not `~/Steam/steamapps/common/PalServer/` (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and in `config_template.json`
+- Run `chmod +x start-server.sh` to make the shell file an executable
+- Stop the palworld server if it's running and start it henceforth using the `start-server.sh` file
+  - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
+
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
   - This token can be found on the [Discord Developer Portal](https://discord.com/developers/applications) under the `Bot` tab of your application
@@ -73,23 +90,6 @@ If you use Windows, you can still use the discord bot, but you should create a b
 - channelId should be set to the id of the discord channel where the bot will send messages from the server chat
   - You can get this id by right-clicking on the channel and clicking copy id
 - Lastly, rename the file to `config.json`
-
-###### Configure stdout listener:
-- Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
-- Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
-  - If you run the discord bot and the palserver with different users, you will need to store console-log.txt in a directory that both users have access to
-    - You can do this by creating a new directory and granting both users access to it
-    - To make a shared directory in linux, you need to run the following:
-      1. `sudo mkdir /var/log/palworld` - creates a new directory
-      2. `sudo groupadd palworld` - creates a new group
-      3. `sudo usermod -a -G palworld user1` - adds the user `user1` to the group `palworld`
-      4. `sudo usermod -a -G palworld user2` - adds the user `user2` to the group `palworld`
-      5. `sudo chgrp -R palworld /var/log/palworld` - grant the group `palworld` ownership over the directory
-      6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
-  - If the path is incorrect (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and `src/services/stdoutWatcher.js` 
-- Run `chmod +x start-server.sh` to make the shell file an executable
-- Stop the palworld server if it's running and start it henceforth using the `start-server.sh` file
-  - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
 
 ###### Start the discord bot:
 - Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running
