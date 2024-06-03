@@ -14,7 +14,7 @@ module.exports = async (client, interaction) => {
         if (!commandObject) return;
 
         if (commandObject.adminOnly) {
-            if (!interaction.member.id.equals(adminId)) {
+            if (!interaction.member.id === adminId) {
                 interaction.reply({
                     content: 'Only the admin is allowed to run this command.',
                     ephemeral: true,
