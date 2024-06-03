@@ -3,11 +3,15 @@ const readline = require('readline');
 const stdoutLineHandler = require('../handlers/stdoutLineHandler');
 const { logPath } = require('../../config.json');
 
-let lastLineRead = 0;
+let lastLineRead;
+
+const lastLineReadPath = 'stdoutService/lastLineRead';
 
 // Read the lastLineRead value from the file
-if (fs.existsSync('lastLineRead.txt')) {
-    lastLineRead = Number(fs.readFileSync('lastLineRead.txt', 'utf8'));
+if (fs.existsSync(lastLineReadPath)) {
+    lastLineRead = Number(fs.readFileSync(lastLineReadPath, 'utf8'));
+} else {
+    lastLineRead = 0;
 }
 
 module.exports = () => {
@@ -34,7 +38,7 @@ module.exports = () => {
             fs.unwatchFile(logPath);
 
             // Write the lastLineRead value to the file
-            fs.writeFileSync('stdoutService/lastLineRead.txt', lastLineRead.toString(), 'utf8');
+            fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
 
             // Restart the module
             module.exports();
