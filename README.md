@@ -76,6 +76,7 @@ Otherwise, the running server will override your changes to any files.
 - Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json`
 - Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
   - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
+- If the console-log.txt file ever gets too big, you can delete it, but make sure to change the number in `src/services/stdoutService/lastLineRead` to 0
 
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
