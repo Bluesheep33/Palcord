@@ -21,7 +21,7 @@ module.exports = {
         const reason = interaction.options.getString('reason') || 'No reason provided';
 
         try {
-            // Kick the player from the server
+            // Ban the player from the server
             await palserverServiceInstance.ban(userid, reason);
 
             // Reply to the interaction
