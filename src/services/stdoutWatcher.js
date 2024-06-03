@@ -1,10 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
 const stdoutHandler = require('../handlers/stdoutHandler');
+const { logPath } = require('../../config.json');
 
 module.exports = () => {
     let lineCount = 0;
-    const logPath = '~/Steam/steamapps/common/PalServer/console-log.txt';
 
     const rl = readline.createInterface({
         input: fs.createReadStream(logPath),

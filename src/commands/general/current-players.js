@@ -3,7 +3,7 @@ const {SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('players')
+        .setName('current-players')
         .setDescription('Get a list of the current players on the Palworld server.'),
     adminOnly: false,
     deleted: false,
@@ -14,7 +14,11 @@ module.exports = {
                 = await palserverServiceInstance.getPlayers();
 
             // Create the message
-            let message = `Players: \n${players.join(", ")}`;
+            let message = `Players: ${
+                players.map(player => 
+                    `Name: ${player.name}, Level: ${player.level}, Ping: ${player.ping}, Steam: ${player.userId}`)
+                    .join("\n")
+            }`;
 
             // Reply with the message
             await interaction.reply(message);
