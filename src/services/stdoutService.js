@@ -26,24 +26,23 @@ const readLogFile = () => {
     // Handle each line of the log file
     rl.on('line', (line) => {
         stdoutLineHandler(line);
-        lastLineRead += Buffer.byteLength(line, 'utf8') + 1; // +1 for newline character
+        lastLineRead += Buffer.byteLength(line + '\n', 'utf8');
     });
 
-    // Watch the log file for changes and restart the readline interface
-    fs.watchFile(logPath, (curr, prev) => {
-        if (curr.mtime !== prev.mtime) {
-            // Close the readline interface
-            rl.close();
+    rl.on('close', () => {
+        // Write the lastLineRead value to the file
+        fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
 
-            // Stop watching the file
-            fs.unwatchFile(logPath);
+        // Watch the log file for changes and restart the readline interface
+        fs.watchFile(logPath, (curr, prev) => {
+            if (curr.mtime !== prev.mtime) {
+                // Stop watching the file
+                fs.unwatchFile(logPath);
 
-            // Write the lastLineRead value to the file
-            fs.writeFileSync(lastLineReadPath, lastLineRead.toString(), 'utf8');
-
-            // Restart the method
-            readLogFile();
-        }
+                // Restart the method
+                readLogFile();
+            }
+        });
     });
 }
 
