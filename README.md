@@ -115,7 +115,12 @@ Otherwise, the running server will override your changes to any files.
 
 ![console log](https://github.com/Bluesheep33/Palcord/assets/75695506/10bc6327-99ba-4608-aab2-c7fe540591fe)
 
+
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
 
 If you have any questions, feel free to ask me on Discord: @adaja__
+
+
+## License
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
