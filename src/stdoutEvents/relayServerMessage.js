@@ -6,7 +6,7 @@ module.exports = async (client, obj) => {
         case 'join':
             channel.send(`${obj.playername} joined the server`);
             break;
-        case 'leave':
+        case 'left':
             channel.send(`${obj.playername} left the server`);
             break;
         case 'chat':

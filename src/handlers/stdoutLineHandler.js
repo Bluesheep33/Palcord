@@ -12,8 +12,8 @@ module.exports = (client, line) => {
         if (obj.event) {
             let handled = false;
             // Handle the event
-            if ([ 'join', 'leave', 'chat' ].includes(obj.event)) {
-                relayServerMessage(client, obj);
+            if ([ 'join', 'left', 'chat' ].includes(obj.event)) {
+                relayServerMessage(client, obj).then(() => {});
                 console.log(`Relaying message for event: ${obj.event}`);
                 handled = true;
             }

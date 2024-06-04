@@ -17,8 +17,5 @@ const client = new Client({
 // Register event listeners
 eventHandler(client);
 
-// Start the stdout service
-stdoutService(client);
-
 // Login to Discord with the app's token
 client.login(token).then(() => {});
