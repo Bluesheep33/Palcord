@@ -1,16 +1,17 @@
+const { channelId } = require('../../config.json');
 
-
-module.exports = (obj) => {
+module.exports = (client, obj) => {
+    const channel = client.channels.cache.get(channelId);
     switch (obj.event) {
         case 'join':
-            console.log(`${obj.playername} joined the server`);
+            channel.send(`${obj.playername} joined the server`);
             break;
         case 'leave':
-            console.log(`${obj.playername} left the server`);
+            channel.send(`${obj.playername} left the server`);
             break;
         case 'chat':
             if (obj.details[0] === 'global') {
-                console.log(`${obj.playername}: ${obj.details[1]}`);
+                channel.send(`${obj.playername}: ${obj.details[1]}`);
             }
             break;
     }
