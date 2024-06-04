@@ -14,10 +14,13 @@ module.exports = (client, line) => {
             // Handle the event
             if ([ 'join', 'leave', 'chat' ].includes(obj.event)) {
                 relayServerMessage(client, obj);
+                console.log(`Relaying message for event: ${obj.event}`);
                 handled = true;
             }
-            if (['join'].includes(obj.event)) {
+            if ([ 'join' ].includes(obj.event)) {
                 // Add the player to the player repo in db
+                console.log(`Adding player to db: ${obj.playername}`);
+                handled = true;
             }
             if (!handled) {
                 console.log(`Unhandled event: ${obj.event}`);
@@ -29,5 +32,6 @@ module.exports = (client, line) => {
     } catch (error) {
         // If an error is thrown, the line is not JSON, so just log the line
         console.log(line);
+        console.error(error);
     }
 }
