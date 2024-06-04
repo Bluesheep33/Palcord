@@ -15,7 +15,7 @@ if (fs.existsSync(lastLineReadPath)) {
     lastLineRead = 0;
 }
 
-const readLogFile = () => {
+const readLogFile = (client) => {
     const fileSize = fs.statSync(logPath).size;
 
     // Check if the current file size is equal to or smaller than the lastLineRead value
@@ -42,7 +42,7 @@ const readLogFile = () => {
 
     // Handle each line of the log file
     rl.on('line', (line) => {
-        stdoutLineHandler(line);
+        stdoutLineHandler(client, line);
         lastLineRead += Buffer.byteLength(line + '\n', 'utf8');
 
         // Write the updated lastLineRead value to the file
@@ -57,11 +57,11 @@ const readLogFile = () => {
                 fs.unwatchFile(logPath);
 
                 // Restart the method
-                readLogFile();
+                readLogFile(client);
             }
         });
     });
 }
 
 // Export the method
-module.exports = readLogFile;
+module.exports = (client) => readLogFile(client);
