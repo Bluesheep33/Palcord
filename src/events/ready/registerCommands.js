@@ -45,7 +45,7 @@ module.exports = async (client) => {
                     description,
                     options
                 });
-                console.log(`➕  Registered command: ${name}`);
+                console.log(`➕ Registered command: ${name}`);
             }
         }
     } catch (error) {

@@ -6,7 +6,7 @@ module.exports = (client) => {
     const eventsDirectory = path.join(__dirname, '../events');
 
     // Get all directories in the events directory
-    const eventDirs = getAllFiles(path.join(__dirname, '..', 'events'), true);
+    const eventDirs = getAllFiles(eventsDirectory, true);
 
     // Register each event folder as an event listener
     for (const dir of eventDirs) {
