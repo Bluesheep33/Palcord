@@ -1,7 +1,7 @@
 const { channelId } = require('../../config.json');
 
-module.exports = (client, obj) => {
-    const channel = client.channels.cache.get(channelId);
+module.exports = async (client, obj) => {
+    const channel = await client.channels.fetch(channelId);
     switch (obj.event) {
         case 'join':
             channel.send(`${obj.playername} joined the server`);
