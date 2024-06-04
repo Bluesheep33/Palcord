@@ -1,4 +1,4 @@
-const stdOutService = require('../../services/stdOutService');
+const stdOutService = require('../../services/stdoutService');
 
 module.exports = (client) => {
     stdOutService(client);
