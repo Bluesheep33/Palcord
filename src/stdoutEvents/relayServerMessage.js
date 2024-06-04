@@ -10,7 +10,7 @@ module.exports = async (client, obj) => {
             channel.send(`${obj.playername} left the server`);
             break;
         case 'chat':
-            if (obj.details[0] === 'global') {
+            if (obj.details[0] === 'Global') {
                 channel.send(`${obj.playername}: ${obj.details[1]}`);
             }
             break;
