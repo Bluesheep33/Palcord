@@ -21,7 +21,13 @@ module.exports = {
             }
 
             // Reply with the message
-            await interaction.reply(message);
+            // Split the message into multiple parts
+            let messages = message.match(/[\s\S]{1,2000}/g) || [];
+
+            // Reply with each part
+            for (let part of messages) {
+                await interaction.reply(part);
+            }
         } catch (error) {
             console.error(error);
             await interaction.reply("Server is offline");
