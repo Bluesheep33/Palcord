@@ -16,17 +16,19 @@ module.exports = {
             let message = 'Server Settings:';
             for (let key in settings) {
                 if (![].includes(key)) {
-                    message += `\n${key}: ${settings.key}`;
+                    message += `\n${key}: ${settings[key]}`;
                 }
             }
 
-            // Reply with the message
             // Split the message into multiple parts
             let messages = message.match(/[\s\S]{1,2000}/g) || [];
 
+            // Reply with the first part
+            await interaction.reply(messages.shift());
+
             // Reply with each part
             for (let part of messages) {
-                await interaction.reply(part);
+                await interaction.channel.send(part);
             }
         } catch (error) {
             console.error(error);
