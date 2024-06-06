@@ -1,17 +1,13 @@
 # Palcord
 A Discord bot for Palworld servers.
-This bot can help you with the following:
-- Get information about the server (general information and the server's metrics)
-- Get information about the players (all players, active players or a specific player)
-- Send and receive messages to/from the server chat (coming soon)
-- Moderate the server (coming soon)
 
 
 ## Quick notes
-This project is designed to work for a Palworld server running on a Linux machine.
-If you use Windows, you can still use the discord bot, but you should create a bat file for the stdout listener instead of the shell script.
+This project is designed to work for a Palworld server running on a Linux machine (in my case Ubuntu server 22.04).
+If you use Windows, you can still use the discord bot, but you should have some general knowledge about computers to set up the project correctly.
 
-Some features are still in development, so they might not work as intended.
+Some features are still in development, so there might still be some bugs.
+In case you find a bug, please report it in the issues tab of this repository, and I'll try to fix it as soon as possible.
 
 When changing settings in the .ini files, make sure to stop the server before making changes and start it again after saving the changes.
 Otherwise, the running server will override your changes to any files.
@@ -23,15 +19,15 @@ Otherwise, the running server will override your changes to any files.
 - Get a server's active player list
 - Get a player's info: name, level, location
 - Send a message to the server chat via discord
+- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
+- Get the server settings (e.g. difficulty, max players, death penalty)
+- Communicate with the server chat via discord: receive join/leave/chat messages from server and send messages to the server chat
 
 
 ## Possibly coming features
+- Store waypoints on the server
 - Get a list of all players
-- Optional communication channel feature on discord to talk with people in palworld without having to join game or vice versa
-- Get the server settings (e.g. difficulty, max players, death penalty)
-- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 - Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
-- Get info from the palserver console (join messages, leave messages)
 
 
 ## Project setup
@@ -48,6 +44,7 @@ Otherwise, the running server will override your changes to any files.
   - Install [Node.js](https://nodejs.org/en/)
   - Run `npm i discord.js` to install the discord.js library (used for communicating with discord)
   - Run `npm i axios` to install the axios library (used for communicating with the palworld server)
+  - Run `npm i express mongoose` to install the express library and mongoose library (used for the local mongo database)
 
 ###### Set up the discord bot:
 - For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
