@@ -35,6 +35,8 @@ Otherwise, the running server will override your changes to any files.
 
 
 ## Project setup
+*!!! Don't run the bot before having set up the project !!!*
+
 ###### Get source code & dependencies:
 - Clone the repository to the computer that you run your palserver on
   - Create a new folder to store the code in
@@ -77,6 +79,27 @@ Otherwise, the running server will override your changes to any files.
 - Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
   - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
 - If the console-log.txt file ever gets too big, you can delete it, but make sure to change the number in `src/services/stdoutService/lastLineRead` to 0
+
+###### Create database:
+- We need a database to store waypoints and player info, for this we will use MongoDB
+- Install MongoDB on your server by following the instructions on the [MongoDB website](https://www.mongodb.com/try/download/community)
+  - If you're using ubuntu server, you can follow the rest of these instructions. If you're using a different OS, you can find the instructions on the MongoDB website in case the installation process is different
+- Input the version, platform and package in the MongoDB website to get the correct installation link
+  - For me, it's Ubuntu 22.04, version 7.0.11, and package Server
+- Copy the link and run the following commands in the terminal:
+  1. `wget <link>` - download the package
+  2. `sudo dpkg -i <package>` - install the package. for the package name, type in mongodb and press tab to autocomplete
+- Start the MongoDB service by running `sudo systemctl start mongod`
+  - Enable the service to start on boot by running `sudo systemctl enable mongod`, or if you don't want it to start on boot, you can skip this step and start the service manually each time
+- Check the status of the service by running `sudo systemctl status mongod`, it should say `active (running)`
+- Go back to the [MongoDB website](https://www.mongodb.com/try/download/community) and click on the `Tools/MongoDB Shell` tab
+- Input the version, platform and package in the MongoDB website to get the correct installation link
+  - For me, it's Debian (10+) / Ubuntu (18.04+) x64, version 2.2.6, and package deb
+- Copy the link and run the following commands in the terminal:
+  1. `wget <link>` - download the package
+  2. `sudo dpkg -i <package>` - install the package. for the package name, type in mongodb-mongosh and press tab to autocomplete
+- Run `mongosh` in the terminal to start the MongoDB shell 
+  - It should say `connecting to: mongodb://127.0.0.1:27017`
 
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
