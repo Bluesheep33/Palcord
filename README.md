@@ -97,6 +97,7 @@ Otherwise, the running server will override your changes to any files.
   2. `sudo dpkg -i <package>` - install the package. for the package name, type in mongodb-mongosh and press tab to autocomplete
 - Run `mongosh` in the terminal to start the MongoDB shell 
   - It should say `connecting to: mongodb://127.0.0.1:27017`
+  - Type `use palcord` to create a new database called palcord
 
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
