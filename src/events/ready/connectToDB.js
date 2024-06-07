@@ -22,7 +22,7 @@ module.exports = () => {
     app.set('view engine', 'ejs');
 
     // Mongoose CRUD routes
-    app.get('/add-waypoint', async (req, res) => {
+    app.get('/waypoints/create', async (req, res) => {
         const waypoint = req.body;
         waypoint.save()
             .then((r) => {
@@ -33,7 +33,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/update-waypoint', async (req, res) => {
+    app.get('/waypoints/update', async (req, res) => {
         const name = req.body.name;
         const location = req.body.location;
         Waypoint.updateOne({ name: name }, { location: location })
@@ -45,7 +45,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/get-waypoints', async (req, res) => {
+    app.get('/waypoints', async (req, res) => {
         Waypoint.find()
             .then((r) => {
                 res.send(r);
@@ -55,8 +55,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/get-waypoint', async (req, res) => {
-        const name = req.body.name;
+    app.get('/waypoints/' + name, async (req, res) => {
         Waypoint.findOne({ name: name })
             .then((r) => {
                 res.send(r);
@@ -66,7 +65,7 @@ module.exports = () => {
             });
     });
 
-    app.delete('/delete-waypoint', async (req, res) => {
+    app.delete('/waypoints/delete', async (req, res) => {
         const name = req.body.name;
         Waypoint.deleteOne({ name: name })
             .then((r) => {
@@ -77,7 +76,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/add-player', async (req, res) => {
+    app.get('/players/create', async (req, res) => {
         const player = req.body;
         player.save()
             .then((r) => {
@@ -88,7 +87,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/update-player', async (req, res) => {
+    app.get('/players/update', async (req, res) => {
         const name = req.body.name;
         const location = req.body.location;
         Player.updateOne({ name: name }, { location: location })
@@ -100,7 +99,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/get-players', async (req, res) => {
+    app.get('/players', async (req, res) => {
         Player.find()
             .then((r) => {
                 res.send(r);
@@ -110,8 +109,7 @@ module.exports = () => {
             });
     });
 
-    app.get('/get-player', async (req, res) => {
-        const name = req.body.name
+    app.get('/players/' + name, async (req, res) => {
         Player.findOne({name: name})
             .then((r) => {
                 res.send(r);
@@ -121,7 +119,7 @@ module.exports = () => {
             });
     });
 
-    app.delete('/delete-player', async (req, res) => {
+    app.delete('/players/delete', async (req, res) => {
         const name = req.body.name;
         Player.deleteOne({name: name})
             .then((r) => {
