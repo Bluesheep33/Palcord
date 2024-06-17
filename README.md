@@ -1,3 +1,5 @@
+![palcord](https://github.com/Bluesheep33/Palcord/assets/75695506/585452ff-0e7a-43ff-9155-d74b8f9cc5bc)
+
 # Palcord
 A Discord bot for Palworld servers.
 This bot can help you with the following:
