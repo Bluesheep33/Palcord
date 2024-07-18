@@ -36,7 +36,7 @@ module.exports = {
                 )
                 .setFooter(
                     {
-                        text: "Powered by Palworld",
+                        text: "Hop on Palworld!",
                         iconURL: "attachment://palworld.png"
                     }
                 );
