@@ -24,16 +24,14 @@ Otherwise, the running server will override your changes to any files.
 - Get a server's status: online/offline, player count, uptime, fps, frame time
 - Get a server's active player list
 - Get a player's info: name, level, location
-- Send a message to the server chat via discord
+- Communication channel to talk with people in discord and palworld, also view join/leave messages
+- Get the server settings (e.g. difficulty, max players, death penalty)
+- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 
 
 ## Possibly coming features
 - Get a list of all players
-- Optional communication channel feature on discord to talk with people in palworld without having to join game or vice versa
-- Get the server settings (e.g. difficulty, max players, death penalty)
-- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 - Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
-- Get info from the palserver console (join messages, leave messages)
 
 
 ## Project setup
@@ -56,9 +54,9 @@ Otherwise, the running server will override your changes to any files.
 
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
-- If you already ran PalServer.sh once, then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
+- If you already ran PalServer.sh once, then first stop the server and then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
   - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
-- Start/Restart the palworld server for the api to start working
+  - Start the palworld server again after changing the .ini file
 
 ###### Configure stdout listener:
 - Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
@@ -107,15 +105,7 @@ Otherwise, the running server will override your changes to any files.
 
 
 ## Pictures
-###### Bot commands
-![server-info](https://github.com/Bluesheep33/Palcord/assets/75695506/782ad7f7-2159-440b-a42c-a4d0d85a7c8b)
-
-![server-status](https://github.com/Bluesheep33/Palcord/assets/75695506/512bdc2a-e512-452c-95c1-395fbf97fbde)
-
-###### Miscellaneous
-![project files](https://github.com/Bluesheep33/Palcord/assets/75695506/125d5c51-815d-4a97-88a5-95c628ef7920)
-
-![console log](https://github.com/Bluesheep33/Palcord/assets/75695506/10bc6327-99ba-4608-aab2-c7fe540591fe)
+Pictures of the bot will come here
 
 
 ## Closing remarks
