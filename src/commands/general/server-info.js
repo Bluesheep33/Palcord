@@ -1,6 +1,8 @@
 const { publicIp, serverPassword } = require("../../../config.json");
 const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const {SlashCommandBuilder, EmbedBuilder, AttachmentBuilder} = require("discord.js");
+const fs = require('fs');
+const path = require('path');``
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,6 +19,10 @@ module.exports = {
                 = await palserverServiceInstance.getSettings();
 
             // Create the message
+            const imagePath = path.resolve(__dirname, '../../resources/palworld.png');
+            const imageBuffer = fs.readFileSync(imagePath);
+            const imageAttachment = new AttachmentBuilder(imageBuffer, { name: 'palworld.png' });
+
             const embed = new EmbedBuilder()
                 .setTitle("Server Info")
                 .setDescription("Information about the Palworld server.")
@@ -27,16 +33,29 @@ module.exports = {
                     { name: "Description", value: description, inline: true },
                     { name: "IP", value: publicIp.toString(), inline: true },
                     { name: "Port", value: port.toString(), inline: true }
+                )
+                .setFooter(
+                    {
+                        text: "Powered by Palworld",
+                        iconURL: "attachment://palworld.png"
+                    }
                 );
             if (serverPassword !== "") {
                 embed.addFields({name: "Password", value: serverPassword, inline: true});
             }
 
             // Reply with the message
-            await interaction.reply( { embeds: [embed] });
+            await interaction.reply( { embeds: [embed], files: [imageAttachment] });
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                    new EmbedBuilder()
+                        .setTitle("Server is offline or Palcord has experienced an error 😵‍💫")
+                        .setColor("Red")
+                        .setDescription("Please try again later.")]
+                }
+            );
         }
     }
 };
