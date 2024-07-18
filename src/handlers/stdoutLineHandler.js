@@ -1,5 +1,3 @@
-const relayServerMessage = require('../stdoutEvents/relayServerMessage');
-
 module.exports = (client, line) => {
     try {
         // Try to parse the line as JSON
@@ -13,7 +11,7 @@ module.exports = (client, line) => {
             let handled = false;
             // Handle the event
             if ([ 'join', 'left', 'chat' ].includes(obj.event)) {
-                relayServerMessage(client, obj).then(() => {});
+                relayServerMessage(client, obj).then(r => {});
                 console.log(`Relaying message for event: ${obj.event}`);
                 handled = true;
             }
@@ -33,5 +31,23 @@ module.exports = (client, line) => {
         // If an error is thrown, the line is not JSON, so just log the line
         console.log(line);
         console.error(error);
+    }
+}
+
+async function relayServerMessage(client, obj) {
+    const {channelId} = require('../../config.json');
+    const channel = await client.channels.fetch(channelId);
+    switch (obj.event) {
+        case 'join':
+            channel.send(`${obj.playername} joined the server`);
+            break;
+        case 'left':
+            channel.send(`${obj.playername} left the server`);
+            break;
+        case 'chat':
+            if (obj.details[0] === 'Global') {
+                channel.send(`${obj.playername}: ${obj.details[1]}`);
+            }
+            break;
     }
 }
