@@ -4,6 +4,9 @@ config.json
 ## Stdout service last line read
 src/services/stdoutService/lastLineRead
 
+## Dummy for server log for development
+dummystdout.txt
+
 ## NPM modules
 node_modules/
 
