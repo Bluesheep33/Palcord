@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
-const stdoutLineHandler = require('../handlers/serverLogLineHandler');
+const serverLogLineHandler = require('../handlers/serverLogLineHandler');
 const { logPath } = require('../../config.json');
 
 let lastLineRead;
@@ -42,7 +42,7 @@ const readLogFile = (client) => {
 
     // Handle each line of the log file
     rl.on('line', (line) => {
-        stdoutLineHandler(client, line);
+        serverLogLineHandler(client, line);
         lastLineRead += Buffer.byteLength(line + '\n', 'utf8');
 
         // Write the updated lastLineRead value to the file
