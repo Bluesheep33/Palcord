@@ -1,5 +1,6 @@
 const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const getImageAttachment = require("../../utils/getImageAttachment");
 
 function formatUptime(uptime) {
     const days = Math.floor(uptime / (24*60*60));
@@ -13,7 +14,7 @@ function formatUptime(uptime) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('server-status')
-        .setDescription('Get the status of the Palworld server.'),
+        .setDescription('Get the status of the Palworld server'),
     adminOnly: false,
     deleted: false,
     callback: async (client, interaction) => {
@@ -26,18 +27,30 @@ module.exports = {
             const formattedUptime = formatUptime(uptime);
 
             // Create the message
-            let message =
-`Server is online
-Server FPS: ${serverfps}
-Current Players: ${currentplayernum}
-Server Frame Time: ${serverframetime}
-Uptime: ${formattedUptime}`;
+            const embed = new EmbedBuilder()
+                .setTitle("Server Status")
+                .setDescription("Status of the Palworld server.")
+                .setColor("Green")
+                .addFields(
+                    { "name": "Current Players", "value": currentplayernum.toString(), "inline": false },
+                    { "name": "Server FPS", "value": serverfps.toString(), "inline": false },
+                    { "name": "Server Frame Time", "value": serverframetime.toString(), "inline": false },
+                    { "name": "Uptime", "value": formattedUptime, "inline": false }
+                )
+                .setFooter({ "text": "Hop on Palworld!", iconURL: "attachment://palworld.png"});
 
             // Reply with the message
-            await interaction.reply(message);
+            await interaction.reply( { embeds: [embed], files: [getImageAttachment]});
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setColor("Red")
+                            .setDescription("Please try again later")]
+                }
+            );
         }
     }
-};
+}
