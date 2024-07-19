@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
-const stdoutLineHandler = require('../handlers/stdoutLineHandler');
+const stdoutLineHandler = require('../handlers/serverLogLineHandler');
 const { logPath } = require('../../config.json');
 
 let lastLineRead;

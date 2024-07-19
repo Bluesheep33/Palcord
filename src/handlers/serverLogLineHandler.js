@@ -1,3 +1,5 @@
+const relayServerMessage = require('../server_events/relayServerMessage');
+
 module.exports = (client, line) => {
     try {
         // Try to parse the line as JSON
@@ -23,31 +25,11 @@ module.exports = (client, line) => {
             if (!handled) {
                 console.log(`Unhandled event: ${obj.event}`);
             }
-
         } else {
             console.log('No event property found');
         }
     } catch (error) {
         // If an error is thrown, the line is not JSON, so just log the line
         console.log(line);
-        console.error(error);
-    }
-}
-
-async function relayServerMessage(client, obj) {
-    const {channelId} = require('../../config.json');
-    const channel = await client.channels.fetch(channelId);
-    switch (obj.event) {
-        case 'join':
-            channel.send(`${obj.playername} joined the server`);
-            break;
-        case 'left':
-            channel.send(`${obj.playername} left the server`);
-            break;
-        case 'chat':
-            if (obj.details[0] === 'Global') {
-                channel.send(`${obj.playername}: ${obj.details[1]}`);
-            }
-            break;
     }
 }
