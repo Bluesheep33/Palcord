@@ -33,19 +33,6 @@ module.exports = {
                 return;
             }
 
-            // Create the message
-            let message =
-`Player: ${player.name}
-Id: ${player.playerId}
-Steam Id: ${player.userId}
-Ip: ${player.ip}
-Ping: ${player.ping}
-Position: X:${player.location_x} Y:${player.location_y}
-Level: ${player.level}`;
-
-            // Reply with the message
-            await interaction.reply(message);
-
             const embed = new EmbedBuilder()
                 .setTitle(`Info about _${player.name}_`)
                 .setDescription("Information about the Palworld player")
@@ -63,7 +50,15 @@ Level: ${player.level}`;
             await interaction.reply({ embeds: [embed], files: [getImageAttachment] });
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

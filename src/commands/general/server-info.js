@@ -42,8 +42,9 @@ module.exports = {
                 { embeds: [
                     new EmbedBuilder()
                         .setTitle("Server is offline or Palcord has experienced an error")
+                        .setDescription("Please try again later")
                         .setColor("Red")
-                        .setDescription("Please try again later")]
+                    ]
                 }
             );
         }
