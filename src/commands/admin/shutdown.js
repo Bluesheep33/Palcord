@@ -1,12 +1,12 @@
 const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('shutdown')
         .setDescription('Shutdown the server.')
         .addIntegerOption(option =>
-            option.setName('waittime')
+            option.setName('wait_time')
                 .setDescription('The time in seconds to wait before shutting down the server')
                 .setRequired(true))
         .addStringOption(option =>
@@ -16,19 +16,32 @@ module.exports = {
     adminOnly: true,
     deleted: false,
     callback: async (client, interaction) => {
-        // Get the waittime and message from the interaction
-        const waittime = interaction.options.getInteger('waittime');
-        const message = interaction.options.getString('message') || `Server is shutting down in ${waittime} seconds.`;
+        // Get the wait time and message from the interaction
+        const waitTime = interaction.options.getInteger('wait_time');
+        const message = interaction.options.getString('message') || `Server is shutting down in ${waitTime} seconds.`;
 
         try {
             // Shutdown the server
-            await palserverServiceInstance.shutdown(waittime, message);
+            await palserverServiceInstance.shutdown(waitTime, message);
 
             // Reply to the interaction
-            await interaction.reply(`Server is shutting down in ${waittime} seconds.`);
+            const embed = new EmbedBuilder()
+                .setTitle("Server Shutdown")
+                .setDescription(`Server is shutting down in ${waitTime} seconds.`)
+                .setColor("DarkPurple");
+
+            await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply('Failed to shutdown the server. Server may be offline');
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

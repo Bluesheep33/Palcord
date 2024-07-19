@@ -10,7 +10,7 @@ module.exports = async function relayServerMessage(client, obj) {
             break;
         case 'chat':
             if (obj.details[0] === 'Global') {
-                channel.send(`:rewind: **${obj.playername}** (palworld): ${obj.details[1]}`);
+                channel.send(`:rewind: **${obj.playername} (palworld)**: ${obj.details[1]}`);
             }
             break;
     }
