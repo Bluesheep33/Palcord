@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
@@ -11,7 +11,7 @@ module.exports = {
     callback: async (client, interaction) => {
         try {
             // Get the server settings
-            const settings = await palserverServiceInstance.getSettings();
+            const settings = await palworldApiServiceInstance.getSettings();
             const settingsChunks = chunkSettings(settings, 18);
             let index = 0;
 

@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 
         try {
             // Send the message to the server chat
-            await palserverServiceInstance.announce(`${interaction.member.displayName} (discord): ${messageContent}`);
+            await palworldApiServiceInstance.announce(`${interaction.member.displayName} (discord): ${messageContent}`);
 
             // Reply to the interaction
             await interaction.reply(`:fast_forward: **${interaction.member.displayName}**: ${messageContent}`);

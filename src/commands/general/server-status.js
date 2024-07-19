@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
@@ -21,7 +21,7 @@ module.exports = {
         try {
             // Get the server status
             const {serverfps, currentplayernum, serverframetime, uptime}
-                = await palserverServiceInstance.getMetrics();
+                = await palworldApiServiceInstance.getMetrics();
 
             // Format the uptime
             const formattedUptime = formatUptime(uptime);

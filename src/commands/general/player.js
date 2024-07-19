@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
@@ -18,7 +18,7 @@ module.exports = {
             const playerName = interaction.options.getString('name');
 
             // Get the player's information from the service
-            const players = await palserverServiceInstance.getPlayers();
+            const players = await palworldApiServiceInstance.getPlayers();
 
             // Find the player with the given name
             const player = players.players.find(p => p.name === playerName);

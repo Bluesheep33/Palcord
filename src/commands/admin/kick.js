@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 
         try {
             // Kick the player from the server
-            await palserverServiceInstance.kick(userid, reason);
+            await palworldApiServiceInstance.kick(userid, reason);
 
             // Reply to the interaction
             const embed = new EmbedBuilder()

@@ -1,5 +1,5 @@
 const { publicIp, serverPassword } = require("../../../config.json");
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
@@ -13,9 +13,9 @@ module.exports = {
         try {
             // Get the server information
             const {version, servername, description}
-                = await palserverServiceInstance.getInfo();
+                = await palworldApiServiceInstance.getInfo();
             const {PublicPort: port}
-                = await palserverServiceInstance.getSettings();
+                = await palworldApiServiceInstance.getSettings();
 
             // Create the message
             const embed = new EmbedBuilder()

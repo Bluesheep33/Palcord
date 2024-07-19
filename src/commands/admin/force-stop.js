@@ -1,4 +1,4 @@
-const palserverServiceInstance = require("../../services/palserverService");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
     callback: async (client, interaction) => {
         try {
             // Force stop the server
-            await palserverServiceInstance.stop();
+            await palworldApiServiceInstance.stop();
 
             // Reply to the interaction
             const embed = new EmbedBuilder()
