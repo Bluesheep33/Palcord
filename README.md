@@ -5,8 +5,8 @@ A Discord bot for Palworld servers.
 This bot can help you with the following:
 - Get information about the server (general information and the server's metrics)
 - Get information about the players (all players, active players or a specific player)
-- Send and receive messages to/from the server chat (coming soon)
-- Moderate the server (coming soon)
+- Send and receive messages to/from the server chat
+- Moderate the server
 
 
 ## Quick notes
