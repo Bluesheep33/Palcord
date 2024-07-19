@@ -1,5 +1,6 @@
 const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const getImageAttachment = require("../../utils/getImageAttachment");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,25 +25,40 @@ module.exports = {
 
             // If the player does not exist, reply with an error message
             if (!player) {
-                await interaction.reply(`Player ${playerName} does not exist on the server.`);
+                const embed = new EmbedBuilder()
+                    .setTitle("Player Not Found")
+                    .setDescription(`Player _${playerName}_ does not exist on the server.`)
+                    .setColor("Yellow");
+                await interaction.reply({ embeds: [embed] });
                 return;
             }
 
-            // Create the message
-            let message =
-`Player: ${player.name}
-Id: ${player.playerId}
-Steam Id: ${player.userId}
-Ip: ${player.ip}
-Ping: ${player.ping}
-Position: X:${player.location_x} Y:${player.location_y}
-Level: ${player.level}`;
+            const embed = new EmbedBuilder()
+                .setTitle(`Info about _${player.name}_`)
+                .setDescription("Information about the Palworld player")
+                .setColor("Green")
+                .addFields(
+                    { "name": "Player Id", "value": player.playerId.toString(), "inline": true },
+                    { "name": "Steam Id", "value": player.userId.toString(), "inline": true },
+                    { "name": "IP", "value": player.ip.toString(), "inline": true },
+                    { "name": "Ping", "value": player.ping.toString(), "inline": true },
+                    { "name": "Position", "value": `X:${player.location_x} Y:${player.location_y}`, "inline": true },
+                    { "name": "Level", "value": player.level.toString(), "inline": true }
+                )
+                .setFooter({ "text": "Hop on Palworld!", iconURL: "attachment://palworld.png"});
 
-            // Reply with the message
-            await interaction.reply(message);
+            await interaction.reply({ embeds: [embed], files: [getImageAttachment] });
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

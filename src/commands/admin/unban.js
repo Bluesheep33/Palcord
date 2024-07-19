@@ -1,5 +1,5 @@
 const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -20,10 +20,23 @@ module.exports = {
             await palserverServiceInstance.unban(userid);
 
             // Reply to the interaction
-            await interaction.reply(`Player with userid ${userid} has been unbanned from the server.`);
+            const embed = new EmbedBuilder()
+                .setTitle("Player Unbanned")
+                .setDescription(`Player with userid ${userid} has been unbanned from the server`)
+                .setColor("DarkPurple");
+
+            await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply(`Failed to unban player with userid ${userid} from the server. Server may be offline`);
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };
