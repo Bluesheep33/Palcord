@@ -29,9 +29,9 @@ Otherwise, the running server will override your changes to any files.
 - Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 
 
-## Possibly coming features
+## Coming features
 - Get a list of all players
-- Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
+- Link/unlink your discord and palworld account
 
 
 ## Project setup
@@ -111,7 +111,7 @@ Pictures of the bot will come here
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
 
-If you have any questions, feel free to ask me on Discord: @adaja__
+If you have any questions, feel free to ask me on the Discord: [adaja bots](https://discord.gg/XwEYDmngXF)
 
 
 ## License
