@@ -104,6 +104,9 @@ Otherwise, the running server will override your changes to any files.
 - The global slash commands will take some time to get registered, so ideally wait a few hours max in order for the commands to show
 
 
+## Visual setup guide
+Youtube video for guiding through setup will come here
+
 ## Pictures
 Pictures of the bot will come here
 
@@ -111,7 +114,7 @@ Pictures of the bot will come here
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
 
-If you have any questions, feel free to ask me on the Discord: [adaja bots](https://discord.gg/XwEYDmngXF)
+If you have any questions, feel free to ask me on the Discord server: [adaja bots](https://discord.gg/XwEYDmngXF)
 
 
 ## License
