@@ -13,7 +13,7 @@ module.exports = (client, line) => {
             let handled = false;
             // Handle the event
             if ([ 'join', 'left', 'chat' ].includes(obj.event)) {
-                relayServerMessage(client, obj).then(r => {});
+                relayServerMessage(obj).then(r => {});
                 console.log(`Relaying message for event: ${obj.event}`);
                 handled = true;
             }
