@@ -6,7 +6,7 @@ const { logPath } = require('../../config.json');
 
 let lastLineRead;
 
-const lastLineReadPath = path.join(__dirname, './stdoutService', 'lastLineRead');
+const lastLineReadPath = path.join(__dirname, '../../data', 'serverLogLastLineRead');
 
 // Read the lastLineRead value from the file
 if (fs.existsSync(lastLineReadPath)) {
