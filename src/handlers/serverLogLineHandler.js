@@ -1,4 +1,4 @@
-const relayServerMessage = require('../server_events/relayServerMessage');
+const relayServerMessage = require('../utils/relayServerMessage');
 
 module.exports = (client, line) => {
     try {
