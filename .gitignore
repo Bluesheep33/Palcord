@@ -1,9 +1,6 @@
 ## Personal config variables
 config.json
 
-## Stdout service last line read
-src/services/stdoutService/lastLineRead
-
 ## Dummy stdout log for development
 dummystdout.txt
 
