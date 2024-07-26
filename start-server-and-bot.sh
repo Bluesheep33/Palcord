@@ -35,7 +35,6 @@ stop_services() {
     echo "Stopping Palworld Server and Palcord..."
     kill $PALSERVER_PID
     pm2 stop palcord
-    echo "Services stopped."
 }
 
 # Trap CTRL+C and stop services
@@ -44,5 +43,4 @@ trap stop_services SIGINT
 # Wait for Server to stop
 wait $PALSERVER_PID
 
-# Wait for PM2 logs to flush
-pm2 flush palcord
+echo "Services stopped."
