@@ -43,4 +43,3 @@ trap stop_services SIGINT
 
 # Wait for services to stop
 wait $PALSERVER_PID
-wait $BOT_PID
