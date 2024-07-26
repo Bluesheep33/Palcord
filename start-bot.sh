@@ -6,3 +6,4 @@ LOG_DIR="./logs"
 
 # Function to start the bot and log the output
 pm2 start src/index.js --name palcord --log $LOG_DIR/bot.log
+pmw save

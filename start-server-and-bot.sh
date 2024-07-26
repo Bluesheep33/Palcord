@@ -14,12 +14,12 @@ LOG_DIR="./logs"
 start_palserver() {
     echo "Starting Palworld Server..."
     bash $PALSERVER_START_SCRIPT & PALSERVER_PID=$!
-    echo "Palworld Server started with PID $PALSERVER_PID. Logs are being written to $LOG_DIR/palserver.log"
+    echo "Palworld Server started with PID $PALSERVER_PID. Logs are being written to $LOG_DIR/server.log"
 }
 
 # Function to start the bot
 start_bot() {
-    echo "Starting bot..."
+    echo "Starting Palcord..."
     bash $BOT_START_SCRIPT & BOT_PID=$!
     echo "Palcord started with PID $BOT_PID. Logs are being written to $LOG_DIR/bot.log"
 }
