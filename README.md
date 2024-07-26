@@ -5,18 +5,15 @@ A Discord bot for Palworld servers.
 This bot can help you with the following:
 - Get information about the server (general information and the server's metrics)
 - Get information about the players (all players, active players or a specific player)
-- Send and receive messages to/from the server chat
-- Moderate the server
+- Send and receive messages to/from the server chat in Discord
+- Moderate the server with use of the Palworld API/RCON
 
 
 ## Quick notes
 This project is designed to work for a Palworld server running on a Linux machine.
-If you use Windows, you can still use the discord bot, but you should create a bat file for the stdout listener instead of the shell script.
+If you use Windows, you can still use the discord bot, but you will need to do a bit of coding to make the bot work.
 
 Some features are still in development, so they might not work as intended.
-
-When changing settings in the .ini files, make sure to stop the server before making changes and start it again after saving the changes.
-Otherwise, the running server will override your changes to any files.
 
 
 ## Features
@@ -38,16 +35,14 @@ Otherwise, the running server will override your changes to any files.
 
 ## Project setup
 ###### Get source code & dependencies:
-- Clone the repository to the computer that you run your palserver on
-  - Create a new folder to store the code in
+- Change directory to `Steam/steamapps/common/PalServer/` (or wherever your Palworld server is stored)
+- Clone the repository while in this directory
+  - Create a new folder to store the code in called Palcord
   - Run `git init` to initialize the folder as a git repository
-  - Run `git remote add origin git@github.com:Bluesheep33/Palcord.git` to add the remote repository
-    - Note that you need to have your ssh key added to your GitHub account to use this command
-  - Run `git pull origin main` to pull the code from the repository
+  - Run `git clone https://github.com/Bluesheep33/Palcord.git` to add the remote repository
 - Make sure you have all dependencies installed
   - Install [Node.js](https://nodejs.org/en/)
-  - Run `npm i discord.js` to install the discord.js library (used for communicating with discord)
-  - Run `npm i axios` to install the axios library (used for communicating with the palworld server)
+  - Run `npm install` to install all dependencies
 
 ###### Set up the discord bot:
 - For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
@@ -60,7 +55,7 @@ Otherwise, the running server will override your changes to any files.
   - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
   - Start the palworld server again after changing the .ini file
 
-###### Configure stdout listener:
+###### Configure server log listener:
 - Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
 - Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
 - If you run the discord bot and the palserver with different users, you will need to store console-log.txt in a directory that both users have access to
