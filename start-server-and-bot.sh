@@ -35,7 +35,7 @@ stop_services() {
     echo "Stopping Palworld Server and Palcord..."
     kill $PALSERVER_PID
     pm2 stop palcord
-    pkill -P &&
+    pkill -P $$
     wait
     echo "Services stopped."
     exit 0
