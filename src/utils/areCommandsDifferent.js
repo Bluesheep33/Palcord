@@ -1,6 +1,9 @@
 module.exports = (existingCommand, localCommand) => {
+    console.log('Comparing commands:', { existingCommand, localCommand });
+
     const areChoicesDifferent = (existingChoices, localChoices) => {
         if (existingChoices?.length !== localChoices?.length) {
+            console.log('Choices length different');
             return true;
         }
 
@@ -10,10 +13,12 @@ module.exports = (existingCommand, localCommand) => {
             );
 
             if (!existingChoice) {
+                console.log('Choice not found:', localChoice.name);
                 return true;
             }
 
             if (localChoice.value !== existingChoice.value) {
+                console.log('Choice value different:', { localChoice, existingChoice });
                 return true;
             }
         }
@@ -21,7 +26,9 @@ module.exports = (existingCommand, localCommand) => {
     };
 
     const areOptionsDifferent = (existingOptions, localOptions) => {
+        console.log('Comparing options:', { existingOptions, localOptions });
         if (existingOptions?.length !== localOptions?.length) {
+            console.log('Options length different');
             return true;
         }
 
@@ -31,6 +38,7 @@ module.exports = (existingCommand, localCommand) => {
             );
 
             if (!existingOption) {
+                console.log('Option not found:', localOption.name);
                 return true;
             }
 
@@ -42,6 +50,7 @@ module.exports = (existingCommand, localCommand) => {
                     existingOption.choices || []
                 )
             ) {
+                console.log('Option different:', { localOption, existingOption });
                 return true;
             }
         }
