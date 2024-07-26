@@ -42,15 +42,14 @@ Some features are still in development, so they might not work as intended.
   - Run `npm i` to install all dependencies
 
 ###### Set up the discord bot:
-- For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
-  - Create a new application
-  - Invite the bot to your discord server
+- Create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
+- Invite the bot to your discord server
 
 ###### Set up the palworld api and server log listener:
 - Stop the palworld server if it's running
-- Set `RESTAPIEnabled` in the `PalworldSettings.ini` to `true` (run the server once to generate the file)
-  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
-- Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json
+- Go to the `Pal/Saved/Config/LinuxServer/` directory and open the `PalWorldSettings.ini` file
+  - Set `RESTAPIEnabled` to `true`
+  - Set `LogFormatType` to `Json`
 - Start the palworld server using the `start-server.sh` file (always use this file to start the server henceforth)
   - This file will start the server and watch for changes in the logs of the server, which is used to get messages from the server chat and relay messages to the discord server
 
