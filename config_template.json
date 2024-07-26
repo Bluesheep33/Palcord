@@ -7,6 +7,5 @@
   "password": "your palserver admin password",
   "publicIp": "your palserver public ip",
   "serverPassword": "your palserver password",
-  "channelId": "your discord channel id",
-  "logPath": "~/Steam/steamapps/common/PalServer/console-log.txt"
+  "channelId": "your discord channel id"
 }
