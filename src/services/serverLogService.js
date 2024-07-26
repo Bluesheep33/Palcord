@@ -2,17 +2,21 @@ const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 const serverLogLineHandler = require('../handlers/serverLogLineHandler');
-const { logPath } = require('../../config.json');
+const logPath = path.join(__dirname, '../../logs', 'server.log');
+const lastLineReadPath = path.join(__dirname, '../../state', 'serverLogLastLineRead');
 
 let lastLineRead;
-
-const lastLineReadPath = path.join(__dirname, '../../state', 'serverLogLastLineRead');
 
 // Read the lastLineRead value from the file
 if (fs.existsSync(lastLineReadPath)) {
     lastLineRead = Number(fs.readFileSync(lastLineReadPath, 'utf8'));
 } else {
     lastLineRead = 0;
+}
+
+// Create the log file if it doesn't exist
+if (!fs.existsSync(logPath)) {
+    fs.writeFileSync(logPath, '', 'utf8');
 }
 
 const readLogFile = (client) => {
