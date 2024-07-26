@@ -41,5 +41,8 @@ stop_services() {
 # Trap CTRL+C and stop services
 trap stop_services SIGINT
 
-# Wait for services to stop
+# Wait for Server to stop
 wait $PALSERVER_PID
+
+# Wait for PM2 logs to flush
+pm2 flush palcord
