@@ -19,7 +19,14 @@ module.exports = (exceptions = []) => {
                 continue;
             }
 
-            localCommands.push(commandObject);
+            commandObject.data.options = commandObject.data.options || [];
+
+            localCommands.push({
+                name: commandObject.data.name,
+                description: commandObject.data.description,
+                options: commandObject.data.options,
+                ...commandObject
+            });
         }
     }
 
