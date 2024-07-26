@@ -4,7 +4,7 @@ module.exports.setClient = (c) => {
     client = c;
 }
 
-module.exports = async function relayServerMessage(obj) {
+module.exports.relay = async function relayServerMessage(obj) {
     const { channelId } = require('../../config.json');
     const channel = await client.channels.fetch(channelId);
     switch (obj.event) {
