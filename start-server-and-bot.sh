@@ -44,6 +44,7 @@ trap stop_services SIGINT
 # Wait for Server to stop
 wait
 
+# Wait for the Server to fully shutdown
 sleep 3
 
 echo "Shutdown complete."
