@@ -19,7 +19,8 @@ module.exports = (exceptions = []) => {
                 continue;
             }
 
-            commandObject.options = commandObject.options || [];
+            commandObject.data.options = commandObject.data.options || [];
+            console.log(`Processing command: ${commandObject.data.name}, options: ${JSON.stringify(commandObject.data.options)}`);
 
             localCommands.push(commandObject);
         }
