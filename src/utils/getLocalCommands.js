@@ -22,9 +22,11 @@ module.exports = (exceptions = []) => {
             commandObject.options = commandObject.options || [];
 
             localCommands.push({
-                name: commandObject.name,
-                description: commandObject.description,
-                options: commandObject.options,
+                data: {
+                    name: commandObject.name,
+                    description: commandObject.description,
+                    options: commandObject.options
+                }
             });
         }
     }
