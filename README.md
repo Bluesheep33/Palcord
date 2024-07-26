@@ -32,6 +32,8 @@ Otherwise, the running server will override your changes to any files.
 ## Coming features
 - Get a list of all players
 - Link/unlink your discord and palworld account
+- Palworld RCON integration
+- Get recent server logs
 
 
 ## Project setup
@@ -54,7 +56,7 @@ Otherwise, the running server will override your changes to any files.
 
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
-- If you already ran PalServer.sh once, then first stop the server and then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
+- If you already ran PalServer.sh once, then first stop the server, and then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
   - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
   - Start the palworld server again after changing the .ini file
 
@@ -105,7 +107,8 @@ Otherwise, the running server will override your changes to any files.
 
 
 ## Visual setup guide
-Youtube video for guiding through setup will come here
+YouTube video for guiding through setup will come here
+
 
 ## Pictures
 Pictures of the bot will come here
@@ -114,7 +117,7 @@ Pictures of the bot will come here
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
 
-If you have any questions, feel free to ask me on the Discord server: [adaja bots](https://discord.gg/XwEYDmngXF)
+If you have any questions, feel free to open a new issue or ask me on the Discord server: [adaja bots](https://discord.gg/XwEYDmngXF)
 
 
 ## License
