@@ -36,13 +36,10 @@ Some features are still in development, so they might not work as intended.
 ## Project setup
 ###### Get source code & dependencies:
 - Change directory to `Steam/steamapps/common/PalServer/` (or wherever your Palworld server is stored)
-- Clone the repository while in this directory
-  - Create a new folder to store the code in called Palcord
-  - Run `git init` to initialize the folder as a git repository
-  - Run `git clone https://github.com/Bluesheep33/Palcord.git` to add the remote repository
+- Run `git clone https://github.com/Bluesheep33/Palcord.git` to add the remote repository
 - Make sure you have all dependencies installed
-  - Install [Node.js](https://nodejs.org/en/)
-  - Run `npm install` to install all dependencies
+  - Install [Node.js](https://nodejs.org/en/) with `sudo apt install nodejs`
+  - Run `npm i` to install all dependencies
 
 ###### Set up the discord bot:
 - For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
@@ -51,7 +48,7 @@ Some features are still in development, so they might not work as intended.
 
 ###### Set up the palworld api:
 - For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
-- If you already ran PalServer.sh once, then first stop the server, and then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
+- If you already ran the server once, then first stop the server, and then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
   - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
   - Start the palworld server again after changing the .ini file
 
