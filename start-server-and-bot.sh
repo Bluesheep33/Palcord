@@ -42,7 +42,6 @@ stop_services() {
 trap stop_services SIGINT
 
 # Wait for Server to stop
-wait $PALSERVER_PID
-wait $BOT_PID
+wait
 
 echo "Shutdown complete."
