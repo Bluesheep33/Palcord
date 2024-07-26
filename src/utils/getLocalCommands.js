@@ -22,7 +22,12 @@ module.exports = (exceptions = []) => {
             commandObject.data.options = commandObject.data.options || [];
             console.log(`Processing command: ${commandObject.data.name}, options: ${JSON.stringify(commandObject.data.options)}`);
 
-            localCommands.push(commandObject);
+            localCommands.push({
+                name: commandObject.data.name,
+                description: commandObject.data.description,
+                options: commandObject.data.options,
+                ...commandObject
+            });
         }
     }
 
