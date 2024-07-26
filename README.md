@@ -40,6 +40,7 @@ Some features are still in development, so they might not work as intended.
 - Make sure you have all dependencies installed
   - Install [Node.js](https://nodejs.org/en/) with `sudo apt install nodejs`
   - Run `npm i` to install all dependencies
+  - Install [pm2](https://pm2.keymetrics.io/) with `npm install pm2 -g`
 
 ###### Set up the discord bot:
 - Create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
