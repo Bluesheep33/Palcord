@@ -1,6 +1,11 @@
 const palworldApiServiceInstance = require("../../services/palworldApiService");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
+/**
+ * Command to shut down the server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('shutdown')
@@ -24,12 +29,13 @@ module.exports = {
             // Shutdown the server
             await palworldApiServiceInstance.shutdown(waitTime, message);
 
-            // Reply to the interaction
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Server Shutdown")
                 .setDescription(`Server is shutting down in ${waitTime} seconds.`)
                 .setColor("DarkPurple");
 
+            // Reply to the interaction
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);

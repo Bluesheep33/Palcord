@@ -1,6 +1,11 @@
 const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
+/**
+ * Command to send a message to the server chat via Discord
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('message')

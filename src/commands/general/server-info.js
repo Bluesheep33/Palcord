@@ -3,6 +3,11 @@ const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
+/**
+ * Command to get information about the Palworld server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('server-info')
@@ -17,7 +22,7 @@ module.exports = {
             const {PublicPort: port}
                 = await palworldApiServiceInstance.getSettings();
 
-            // Create the message
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Server Info")
                 .setDescription("Information about the Palworld server")

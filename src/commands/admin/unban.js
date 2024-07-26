@@ -1,6 +1,11 @@
 const palworldApiServiceInstance = require("../../services/palworldApiService");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
+/**
+ * Command to unban a player from the server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('unban')
@@ -19,12 +24,13 @@ module.exports = {
             // Unban the player from the server
             await palworldApiServiceInstance.unban(userid);
 
-            // Reply to the interaction
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Player Unbanned")
                 .setDescription(`Player with userid ${userid} has been unbanned from the server`)
                 .setColor("DarkPurple");
 
+            // Reply to the interaction
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);

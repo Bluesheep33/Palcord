@@ -2,15 +2,11 @@ const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
-function formatUptime(uptime) {
-    const days = Math.floor(uptime / (24*60*60));
-    const hours = Math.floor((uptime % (24*60*60)) / (60*60));
-    const minutes = Math.floor((uptime % (60*60)) / 60);
-    const seconds = Math.floor(uptime % 60);
-
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
+/**
+ * Command to get the status of the Palworld server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('server-status')
@@ -26,7 +22,7 @@ module.exports = {
             // Format the uptime
             const formattedUptime = formatUptime(uptime);
 
-            // Create the message
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Server Status")
                 .setDescription("Status of the Palworld server.")
@@ -39,7 +35,7 @@ module.exports = {
                 )
                 .setFooter({ "text": "Hop on Palworld!", iconURL: "attachment://palworld.png"});
 
-            // Reply with the message
+            // Reply to the interaction
             await interaction.reply( { embeds: [embed], files: [getImageAttachment]});
         } catch (error) {
             console.error(error);
@@ -54,4 +50,18 @@ module.exports = {
             );
         }
     }
+}
+
+/**
+ * Format the uptime into a human-readable format
+ * @param uptime the uptime in seconds
+ * @returns {string} the formatted uptime
+ */
+function formatUptime(uptime) {
+    const days = Math.floor(uptime / (24*60*60));
+    const hours = Math.floor((uptime % (24*60*60)) / (60*60));
+    const minutes = Math.floor((uptime % (60*60)) / 60);
+    const seconds = Math.floor(uptime % 60);
+
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }

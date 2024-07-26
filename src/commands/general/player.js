@@ -2,6 +2,11 @@ const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const getImageAttachment = require("../../utils/getImageAttachment");
 
+/**
+ * Command to get information about a specific player on the Palworld server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('player')
@@ -33,6 +38,7 @@ module.exports = {
                 return;
             }
 
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle(`Info about _${player.name}_`)
                 .setDescription("Information about the Palworld player")
@@ -47,6 +53,7 @@ module.exports = {
                 )
                 .setFooter({ "text": "Hop on Palworld!", iconURL: "attachment://palworld.png"});
 
+            // Reply to the interaction
             await interaction.reply({ embeds: [embed], files: [getImageAttachment] });
         } catch (error) {
             console.error(error);

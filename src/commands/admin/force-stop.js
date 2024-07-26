@@ -1,6 +1,11 @@
 const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
+/**
+ * Command to force stop the server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('force-stop')
@@ -12,12 +17,13 @@ module.exports = {
             // Force stop the server
             await palworldApiServiceInstance.stop();
 
-            // Reply to the interaction
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Server Force Stopped")
                 .setDescription(`Server has been force stopped`)
                 .setColor("DarkPurple");
 
+            // Reply to the interaction
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);

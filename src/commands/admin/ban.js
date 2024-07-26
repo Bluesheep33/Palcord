@@ -1,6 +1,11 @@
 const palworldApiServiceInstance = require("../../services/palworldApiService");
 const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
+/**
+ * Command to ban a player from the server
+ *
+ * @type SlashCommandBuilder the slash command builder
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ban')
@@ -24,12 +29,13 @@ module.exports = {
             // Ban the player from the server
             await palworldApiServiceInstance.ban(userid, reason);
 
-            // Reply to the interaction
+            // Create embed
             const embed = new EmbedBuilder()
                 .setTitle("Player Banned")
                 .setDescription(`Player with userid ${userid} has been banned from the server`)
                 .setColor("DarkPurple");
 
+            // Reply to the interaction
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
