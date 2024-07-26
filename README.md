@@ -50,8 +50,6 @@ Some features are still in development, so they might not work as intended.
 - Go to the `Pal/Saved/Config/LinuxServer/` directory and open the `PalWorldSettings.ini` file
   - Set `RESTAPIEnabled` to `true`
   - Set `LogFormatType` to `Json`
-- Start the palworld server using the `start-server.sh` file (always use this file to start the server henceforth)
-  - This file will start the server and watch for changes in the logs of the server, which is used to get messages from the server chat and relay messages to the discord server
 
 ###### Configure the json file:
 - Copy the discord bot token and put it in the `config_template.json` file
@@ -74,9 +72,9 @@ Some features are still in development, so they might not work as intended.
   - You can get this id by right-clicking on the channel and clicking copy id
 - Lastly, rename the file to `config.json`
 
-###### Start the discord bot:
-- Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running
-- The global slash commands will take some time to get registered, so ideally wait a few hours max in order for the commands to show
+###### Start the server and discord bot:
+- Always use the `start-server-and-bot.sh` script to start the server and bot
+- The global slash commands will take some time to get registered when running for the first time, after a few hours the commands will show
 
 
 ## Visual setup guide
