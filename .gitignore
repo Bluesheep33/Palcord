@@ -1,9 +1,6 @@
 ## Personal config variables
 config.json
 
-## Dummy stdout log for development
-dummystdout.txt
-
 ## NPM modules
 node_modules/
 
