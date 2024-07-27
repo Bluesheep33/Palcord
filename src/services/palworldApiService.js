@@ -250,5 +250,7 @@ class palworldApiService {
     }
 }
 
+
+// Export the palworldApiService as a singleton
 const palworldApiServiceInstance = new palworldApiService();
 module.exports = palworldApiServiceInstance;

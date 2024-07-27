@@ -19,6 +19,10 @@ if (!fs.existsSync(logPath)) {
     fs.writeFileSync(logPath, '', 'utf8');
 }
 
+/**
+ * Read from the log file and pass each line to the serverLogLineHandler
+ * @param client The discord client
+ */
 const readLogFile = (client) => {
     const fileSize = fs.statSync(logPath).size;
 
