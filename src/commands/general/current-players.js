@@ -1,5 +1,6 @@
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const getImageAttachment = require("../../utils/getImageAttachment");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,21 +11,46 @@ module.exports = {
     callback: async (client, interaction) => {
         try {
             // Get the server status
-            const {players}
-                = await palserverServiceInstance.getPlayers();
+            const {players} = await palworldApiServiceInstance.getPlayers();
 
-            // Create the message
-            let message = `Players: ${
-                players.map(player => 
-                    `Name: ${player.name}, Level: ${player.level}, Ping: ${player.ping}, Steam: ${player.userId}`)
-                    .join("\n")
-            }`;
+            const embed = new EmbedBuilder()
+                .setTitle("Current Players")
+                .setDescription("List of current players on the Palworld server")
+                .setColor("Green")
+                .setFooter({ text: "Hop on Palworld!", iconURL: "attachment://palworld.png" });
 
-            // Reply with the message
-            await interaction.reply(message);
+            if (players.length > 0) {
+                for (const player of players) {
+                    embed.addFields(
+                        {
+                            name: player.name,
+                            value: `level: ${player.level}\nping: ${player.ping}\nsteam: ${player.userId}`,
+                            inline: true
+                        }
+                    );
+                }
+            } else {
+                embed.addFields(
+                    {
+                        name: "There are currently no players on the server",
+                        value: " ",
+                        inline: false
+                    }
+                );
+            }
+
+            await interaction.reply({ embeds: [embed], files: [getImageAttachment] });
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

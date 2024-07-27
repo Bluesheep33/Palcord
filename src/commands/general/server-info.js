@@ -1,6 +1,7 @@
 const { publicIp, serverPassword } = require("../../../config.json");
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const getImageAttachment = require("../../utils/getImageAttachment");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,27 +13,40 @@ module.exports = {
         try {
             // Get the server information
             const {version, servername, description}
-                = await palserverServiceInstance.getInfo();
+                = await palworldApiServiceInstance.getInfo();
             const {PublicPort: port}
-                = await palserverServiceInstance.getSettings();
+                = await palworldApiServiceInstance.getSettings();
 
             // Create the message
-            let message =
-`Server Name: ${servername}
-Game Version: ${version}
-Description: ${description}
-IP: ${publicIp}
-Port: ${port}`;
-
+            const embed = new EmbedBuilder()
+                .setTitle("Server Info")
+                .setDescription("Information about the Palworld server")
+                .setColor("Green")
+                .addFields(
+                    { name: "Server Name", value: servername, inline: true },
+                    { name: "Game Version", value: version, inline: true },
+                    { name: "Description", value: description, inline: true },
+                    { name: "IP", value: publicIp.toString(), inline: true },
+                    { name: "Port", value: port.toString(), inline: true }
+                )
+                .setFooter({ text: "Hop on Palworld!", iconURL: "attachment://palworld.png"});
             if (serverPassword !== "") {
-                message += `\nPassword: ${serverPassword}`;
+                embed.addFields({name: "Password", value: serverPassword, inline: true});
             }
 
             // Reply with the message
-            await interaction.reply(message);
+            await interaction.reply( { embeds: [embed], files: [getImageAttachment] });
         } catch (error) {
             console.error(error);
-            await interaction.reply("Server is offline");
+            await interaction.reply(
+                { embeds: [
+                    new EmbedBuilder()
+                        .setTitle("Server is offline or Palcord has experienced an error")
+                        .setDescription("Please try again later")
+                        .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

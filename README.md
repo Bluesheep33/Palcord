@@ -1,16 +1,22 @@
+![palcord](https://github.com/Bluesheep33/Palcord/assets/75695506/585452ff-0e7a-43ff-9155-d74b8f9cc5bc)
+
 # Palcord
 A Discord bot for Palworld servers.
 
+This bot can help you with the following:
+- Get information about the server (general information and the server's metrics)
+- Get information about the players (all players, active players or a specific player)
+- Send and receive messages to/from the server chat in Discord
+- Moderate the server with use of the Palworld API/RCON
+
 
 ## Quick notes
-This project is designed to work for a Palworld server running on a Linux machine (in my case Ubuntu server 22.04).
-If you use Windows, you can still use the discord bot, but you should have some general knowledge about computers to set up the project correctly.
+This project is designed to work for a Palworld server running on a Linux machine.
+If you use Windows, you can still use the discord bot, but you will need to do a bit of coding to make the bot work.
+
 
 Some features are still in development, so there might still be some bugs.
 In case you find a bug, please report it in the issues tab of this repository, and I'll try to fix it as soon as possible.
-
-When changing settings in the .ini files, make sure to stop the server before making changes and start it again after saving the changes.
-Otherwise, the running server will override your changes to any files.
 
 
 ## Features
@@ -18,64 +24,39 @@ Otherwise, the running server will override your changes to any files.
 - Get a server's status: online/offline, player count, uptime, fps, frame time
 - Get a server's active player list
 - Get a player's info: name, level, location
-- Send a message to the server chat via discord
-- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
+- Communication channel to talk with people in discord and palworld, also view join/leave messages
 - Get the server settings (e.g. difficulty, max players, death penalty)
-- Communicate with the server chat via discord: receive join/leave/chat messages from server and send messages to the server chat
+- Admin commands (kick, ban, unban, save, shutdown, force shutdown)
 
 
-## Possibly coming features
-- Store waypoints on the server
+## Coming features
 - Get a list of all players
-- Get info from the paldex (e.g. pal info, paldex entries) using [this](https://github.com/mlg404/palworld-paldex-api) GitHub repository from mlg404
+- Link/unlink your discord and palworld account
+- Palworld RCON integration
+- Get recent server logs
+- Store waypoints on the server
 
 
 ## Project setup
 *!!! Don't run the bot before having set up the project !!!*
 
 ###### Get source code & dependencies:
-- Clone the repository to the computer that you run your palserver on
-  - Create a new folder to store the code in
-  - Run `git init` to initialize the folder as a git repository
-  - Run `git remote add origin git@github.com:Bluesheep33/Palcord.git` to add the remote repository
-    - Note that you need to have your ssh key added to your GitHub account to use this command
-  - Run `git pull origin main` to pull the code from the repository
+- Change directory to `Steam/steamapps/common/PalServer/` (or wherever your Palworld server is stored)
+- Run `git clone https://github.com/Bluesheep33/Palcord.git` to add the remote repository
 - Make sure you have all dependencies installed
-  - Install [Node.js](https://nodejs.org/en/)
-  - Run `npm i discord.js` to install the discord.js library (used for communicating with discord)
-  - Run `npm i axios` to install the axios library (used for communicating with the palworld server)
-  - Run `npm i express mongoose` to install the express library and mongoose library (used for the local mongo database)
+  - Install [Node.js](https://nodejs.org/en/) with `sudo apt install nodejs`
+  - Run `npm i` to install all dependencies
+  - Install [pm2](https://pm2.keymetrics.io/) with `npm install pm2 -g`
 
 ###### Set up the discord bot:
-- For the discord bot to work, you need to create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
-  - Create a new application
-  - Invite the bot to your discord server
+- Create a bot on the [Discord Developer Portal](https://discord.com/developers/applications)
+- Invite the bot to your discord server
 
-###### Set up the palworld api:
-- For the palworld server api to work, you need to set `RESTAPIEnabled` in the DefaultPalworldSettings.ini to `true`
-- If you already ran PalServer.sh once, then you should copy everything from the DefaultPalworldSettings.ini to the PalWorldSettings.ini file
-  - This PalworldSettings.ini file can be found under `Pal/Saved/Config/LinuxServer/`
-- Start/Restart the palworld server for the api to start working
-
-###### Configure stdout listener:
-- Move the `start-server.sh` file to the same directory as the `PalServer.sh` file
-- Verify that the path to the `PalServer.sh` file is correct in the `start-server.sh` file
-- If you run the discord bot and the palserver with different users, you will need to store console-log.txt in a directory that both users have access to
-  - You can do this by creating a new directory and granting both users access to it
-  - To make a shared directory in linux, you need to run the following:
-    1. `sudo mkdir /var/log/palworld` - creates a new directory
-    2. `sudo groupadd palworld` - creates a new group
-    3. `sudo usermod -a -G palworld user1` - adds the user `user1` to the group `palworld`
-    4. `sudo usermod -a -G palworld user2` - adds the user `user2` to the group `palworld`
-    5. `sudo chgrp -R palworld /var/log/palworld` - grant the group `palworld` ownership over the directory
-    6. `sudo chmod -R 2775 /var/log/palworld` - grant the directory owner full read/write access
-- If the path to where you want your log is not `~/Steam/steamapps/common/PalServer/` (f.e. when Steam isn't downloaded in the home folder of a user, or you need to put the file in /var/log/palworld) then change it to the correct path in both the shell file and in `config_template.json`
-- Run `chmod +x start-server.sh` to make the shell file an executable
+###### Set up the palworld api and server log listener:
 - Stop the palworld server if it's running
-- Set `LogFormatType` in the `PalWorldSettings.ini` file to `Json`
-- Start the palworld using the `start-server.sh` file (always use this file to start the server henceforth)
-  - This file will start the server and listen to the stdout of the server, which is used to get messages from the server chat and relay join/leave messages to the discord server
-- If the console-log.txt file ever gets too big, you can delete it, but make sure to change the number in `src/services/stdoutService/lastLineRead` to 0
+- Go to the `Pal/Saved/Config/LinuxServer/` directory and open the `PalWorldSettings.ini` file
+  - Set `RESTAPIEnabled` to `true`
+  - Set `LogFormatType` to `Json`
 
 ###### Create database:
 - We need a database to store waypoints and player info, for this we will use MongoDB
@@ -119,27 +100,23 @@ Otherwise, the running server will override your changes to any files.
   - You can get this id by right-clicking on the channel and clicking copy id
 - Lastly, rename the file to `config.json`
 
-###### Start the discord bot:
-- Run `node index.js` in the src directory to start the bot, or alternatively, use a process manager like [pm2](https://pm2.keymetrics.io/) to keep the bot running
-- The global slash commands will take some time to get registered, so ideally wait a few hours max in order for the commands to show
+###### Start the server and discord bot:
+- Always use the `start-server-and-bot.sh` script to start the server and bot
+- The global slash commands will take some time to get registered when running for the first time, after a few hours the commands will show
+
+
+## Visual setup guide
+YouTube video for guiding through setup will come here
 
 
 ## Pictures
-###### Bot commands
-![server-info](https://github.com/Bluesheep33/Palcord/assets/75695506/782ad7f7-2159-440b-a42c-a4d0d85a7c8b)
-
-![server-status](https://github.com/Bluesheep33/Palcord/assets/75695506/512bdc2a-e512-452c-95c1-395fbf97fbde)
-
-###### Miscellaneous
-![project files](https://github.com/Bluesheep33/Palcord/assets/75695506/125d5c51-815d-4a97-88a5-95c628ef7920)
-
-![console log](https://github.com/Bluesheep33/Palcord/assets/75695506/10bc6327-99ba-4608-aab2-c7fe540591fe)
+Pictures of the bot will come here
 
 
 ## Closing remarks
 Feel free to contribute to this repository by any means. I'm open to suggestions and improvements.
 
-If you have any questions, feel free to ask me on Discord: @adaja__
+If you have any questions, feel free to open a new issue or ask me on the Discord server: [adaja bots](https://discord.gg/XwEYDmngXF)
 
 
 ## License

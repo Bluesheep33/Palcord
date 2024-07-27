@@ -1,5 +1,5 @@
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,13 +17,22 @@ module.exports = {
 
         try {
             // Send the message to the server chat
-            await palserverServiceInstance.announce(messageContent);
+            await palworldApiServiceInstance.announce(`${interaction.member.displayName} (discord): ${messageContent}`);
 
             // Reply to the interaction
-            await interaction.reply(`Message sent to the server chat: ${messageContent}`);
+            await interaction.reply(`:fast_forward: **${interaction.member.displayName}**: ${messageContent}`);
+
         } catch (error) {
             console.error(error);
-            await interaction.reply("Failed to send the message to the server chat. Server may be offline.");
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

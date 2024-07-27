@@ -1,5 +1,5 @@
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,13 +10,26 @@ module.exports = {
     callback: async (client, interaction) => {
         try {
             // Force stop the server
-            await palserverServiceInstance.stop();
+            await palworldApiServiceInstance.stop();
 
             // Reply to the interaction
-            await interaction.reply('Server has been force stopped.');
+            const embed = new EmbedBuilder()
+                .setTitle("Server Force Stopped")
+                .setDescription(`Server has been force stopped`)
+                .setColor("DarkPurple");
+
+            await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply('Failed to force stop the server. Server may be offline');
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

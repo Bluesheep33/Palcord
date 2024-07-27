@@ -1,5 +1,5 @@
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,13 +22,26 @@ module.exports = {
 
         try {
             // Kick the player from the server
-            await palserverServiceInstance.kick(userid, reason);
+            await palworldApiServiceInstance.kick(userid, reason);
 
             // Reply to the interaction
-            await interaction.reply(`Player with userid ${userid} has been kicked from the server.`);
+            const embed = new EmbedBuilder()
+                .setTitle("Player Kicked")
+                .setDescription(`Player with userid ${userid} has been kicked from the server`)
+                .setColor("DarkPurple");
+
+            await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply(`Failed to kick player with userid ${userid} from the server. Server may be offline`);
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };

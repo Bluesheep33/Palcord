@@ -1,4 +1,4 @@
-const relayServerMessage = require('../stdoutEvents/relayServerMessage');
+const relayServerMessage = require('../utils/relayServerMessage');
 
 module.exports = (client, line) => {
     try {
@@ -13,7 +13,7 @@ module.exports = (client, line) => {
             let handled = false;
             // Handle the event
             if ([ 'join', 'left', 'chat' ].includes(obj.event)) {
-                relayServerMessage(client, obj).then(() => {});
+                relayServerMessage.relay(obj).then(r => {});
                 console.log(`Relaying message for event: ${obj.event}`);
                 handled = true;
             }
@@ -25,13 +25,11 @@ module.exports = (client, line) => {
             if (!handled) {
                 console.log(`Unhandled event: ${obj.event}`);
             }
-
         } else {
             console.log('No event property found');
         }
     } catch (error) {
         // If an error is thrown, the line is not JSON, so just log the line
         console.log(line);
-        console.error(error);
     }
 }

@@ -1,5 +1,5 @@
-const palserverServiceInstance = require("../../services/palserverService");
-const {SlashCommandBuilder} = require("discord.js");
+const palworldApiServiceInstance = require("../../services/palworldApiService");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,13 +10,26 @@ module.exports = {
     callback: async (client, interaction) => {
         try {
             // Save the server
-            await palserverServiceInstance.save();
+            await palworldApiServiceInstance.save();
 
             // Reply to the interaction
-            await interaction.reply('Server has been saved.');
+            const embed = new EmbedBuilder()
+                .setTitle("Server Saved")
+                .setDescription(`Server has been saved`)
+                .setColor("DarkPurple");
+
+            await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply('Failed to save the server. Server may be offline');
+            await interaction.reply(
+                { embeds: [
+                        new EmbedBuilder()
+                            .setTitle("Server is offline or Palcord has experienced an error")
+                            .setDescription("Please try again later")
+                            .setColor("Red")
+                    ]
+                }
+            );
         }
     }
 };
