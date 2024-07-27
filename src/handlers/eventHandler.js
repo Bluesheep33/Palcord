@@ -1,6 +1,10 @@
 const path = require('path');
 const getAllFiles = require('../utils/getAllFiles');
 
+/**
+ * Register all event listeners
+ * @param client The discord client
+ */
 module.exports = (client) => {
     // Get the absolute path of the events directory
     const eventsDirectory = path.join(__dirname, '../events');

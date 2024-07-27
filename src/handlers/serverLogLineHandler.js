@@ -1,5 +1,10 @@
 const relayServerMessage = require('../utils/relayServerMessage');
 
+/**
+ * Pass the line from the server log to the appropriate function
+ * @param client The discord client
+ * @param line The line from the server log
+ */
 module.exports = (client, line) => {
     try {
         // Try to parse the line as JSON
@@ -19,6 +24,7 @@ module.exports = (client, line) => {
             }
             if ([ 'join' ].includes(obj.event)) {
                 // Add the player to the player repo in db
+                // TODO: Implement this
                 console.log(`Adding player to db: ${obj.playername}`);
                 handled = true;
             }
