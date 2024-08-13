@@ -59,7 +59,7 @@ Some features are still in development, so they might not work as intended.
   - This is for the bot to know who the server admin is and to allow you to use the admin commands 
 - Put the rest api server ip and port in this same file
   - If you're running the server on the same computer as the bot, you can use `localhost` or `127.0.0.1` as the ip. Otherwise, put the ip of the other computer running the server.
-  - Note that the port should be the port that the rest api is running on, not the palserver port. By default, this port is `8212`
+  - Note that the port should be the port that the rest api is running on, not the palserver port. By default this port is `8212`
 - Put the username and password of the server admin in this file
   - The username is `admin` by default, the password is the same as the one you use to log into the server as admin (the one you set in the server settings)
     - If you haven't set a password, you can set one in the PalWorldSettings.ini file 
