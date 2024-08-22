@@ -1,6 +1,9 @@
 ![palcord](https://github.com/Bluesheep33/Palcord/assets/75695506/585452ff-0e7a-43ff-9155-d74b8f9cc5bc)
 
 # Palcord
+
+DEPRECATED in favor of ![Palbot](https://github.com/dkoz/palworld-palbot)
+
 A Discord bot for Palworld servers.
 This bot can help you with the following:
 - Get information about the server (general information and the server's metrics)
